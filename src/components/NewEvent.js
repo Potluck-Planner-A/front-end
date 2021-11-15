@@ -5,11 +5,11 @@ const fakeData = [
   location: '4231 Westover St Georgetown, SD, 54063',
   guests: ['Millie', 'Maggie', 'Melvin', 'Murry', 'Murphy'],
   food: ['Potatoes & Gravy', 'Roles', 'Ham', 'Drinks', 'stuffing']},
-  {date: '11/28/2021',
+  {date: '11/27/2021',
   location: '4231 Westover St Georgetown, SD, 54063',
   guests: ['Millie', 'Maggie', 'Melvin', 'Murry', 'Murphy'],
   food: ['Potatoes & Gravy', 'Roles', 'Ham', 'Drinks', 'stuffing']}, 
-  {date: '11/28/2021',
+  {date: '11/24/2021',
   location: '4231 Westover St Georgetown, SD, 54063',
   guests: ['Millie', 'Maggie', 'Melvin', 'Murry', 'Murphy'],
   food: ['Potatoes & Gravy', 'Roles', 'Ham', 'Drinks', 'stuffing']},]
