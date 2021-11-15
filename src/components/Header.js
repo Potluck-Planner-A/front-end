@@ -1,5 +1,25 @@
 import React from "react";
 import { AppBar, Toolbar, Typography, makeStyles } from "@material-ui/core";
+import { Link } from 'react-router-dom';
+
+const headersData = [
+  {
+    label: "Home",
+    href: "/",
+  },
+  {
+    label: "Create Event",
+    href: "/createevent",
+  },
+  {
+    label: "Upcoming Events",
+    href: "/upcomingevents",
+  },
+  {
+    label: "Logout",
+    href: "/logout",
+  },
+];
 
 const useStyles = makeStyles(() => ({
   header: {
@@ -14,9 +34,15 @@ const useStyles = makeStyles(() => ({
 }));
 
 const Header = () => {
-  const { header } = useStyles();
+  const { header, logo } = useStyles();
+
   const displayDesktop = () => {
-    return <Toolbar>{potluckPlannerLogo}</Toolbar>;
+    return ( 
+        <Toolbar>
+            {potluckPlannerLogo}
+            {getMenuButtons()}
+        </Toolbar>
+    );
   };
 
   const potluckPlannerLogo = (
@@ -24,6 +50,23 @@ const Header = () => {
       Potluck Planner
     </Typography>
   );
+
+  const getMenuButtons = () => {
+    return headersData.map(({ label, href }) => {
+        return (
+            <Button
+                {{
+                    key: label,
+                    color: 'inherit',
+                    to: href,
+                    component: Link,
+                }}
+            >
+                {label}
+            </Button>
+        );
+    })
+}
 
   return (
     <header>
