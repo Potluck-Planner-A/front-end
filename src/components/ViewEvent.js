@@ -1,6 +1,7 @@
 // Import dependencies
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 // Here's where the styling will go
 
@@ -42,6 +43,7 @@ const ViewEvent = () => {
                             <h2>{event.name}</h2>
                             <p>When the date is available it's go here</p>
                             <p>When the location is added it'll go here</p>
+                            More Info {/* Will link to the ViewEvent */}
                         </div>
                     )
                 })
