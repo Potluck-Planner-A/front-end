@@ -1,8 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header';
-import { Route } from "react-router-dom";
-import PrivateRoute from './components/PrivateRoute';
+// import { Route } from "react-router-dom";
+// import PrivateRoute from './components/PrivateRoute';
 
 
 function App() {
