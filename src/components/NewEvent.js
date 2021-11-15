@@ -16,7 +16,8 @@ const fakeData = [
 
 const NewEvent = () => {
 
-    const [ formValues, setFromValues ] = useState({date: '', location: '', guests: '', food: ''})
+    const [ formValues, setFromValues ] = useState({date: '', location: '', guests: '', food: ''});
+    const [ potluck, setPotluck ] = useState(fakeData);
 
     const submit = (evt) => {
         evt.preventDefault();
@@ -26,11 +27,18 @@ const NewEvent = () => {
             guests: formValues.guests.trim(),
             food: formValues.food.trim(),
         }
+        setPotluck(potluck.concat(newPotluck))
+        setFromValues({date: '', location: '', guests: '', food: ''})
+    }
 
+    const change = (evt) => {
+        const {name, value} = evt.target;
+        setFromValues({...formValues, [name]: value})
     }
 
     return (
         <div>
+            <h2>Potluck Planner</h2>
             <form onSubmit={submit}>
                 <label>Date:
                     <input
@@ -65,6 +73,7 @@ const NewEvent = () => {
                         placeholder="Add Food Items"
                     />
                 </label>
+                <input type="submit" value="Add a potLuck" />
             </form>
         </div>
     )
