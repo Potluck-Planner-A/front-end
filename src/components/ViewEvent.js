@@ -19,7 +19,7 @@ const ViewEvent = () => {
     const getEvents = () => {
         axios.get('https://pokeapi.co/api/v2/pokemon/')
             .then(res => {
-                console.log(res);
+                setEvents(res.data.results);
             })
             .catch(err => {
                 console.error(`Ruh roh! ${err}`);
@@ -34,7 +34,18 @@ const ViewEvent = () => {
 
     // Render content
     return (
-        <div>
+        <div className='eventList'>
+            {
+                events.map(event => {
+                    return (
+                        <div className='events'>
+                            <h2>{event.name}</h2>
+                            <p>When the date is available it's go here</p>
+                            <p>When the location is added it'll go here</p>
+                        </div>
+                    )
+                })
+            }
         </div>
     )
 };
