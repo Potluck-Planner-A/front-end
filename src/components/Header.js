@@ -1,10 +1,16 @@
 import React from "react";
-import { AppBar, Toolbar } from "@material-ui/core";
+import { AppBar, Toolbar, Typography } from "@material-ui/core";
 
 const Header = () => {
   const displayDesktop = () => {
-    return <Toolbar>Potluck Planner</Toolbar>;
+    return <Toolbar>{potluckPlannerLogo}</Toolbar>;
   };
+
+  const potluckPlannerLogo = (
+    <Typography variant='h6' component='h1'>
+      Potluck Planner
+    </Typography>
+  );
 
   return (
     <header>
