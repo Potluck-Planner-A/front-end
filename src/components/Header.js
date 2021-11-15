@@ -5,6 +5,12 @@ const useStyles = makeStyles(() => ({
   header: {
     backgroundColor: "#000000",
   },
+  logo: {
+    fontFamily: "Fira Sans, sans-serif",
+    fontWeight: 600,
+    color: "#ffffff",
+    textAlign: "left",
+  },
 }));
 
 const Header = () => {
