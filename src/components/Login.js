@@ -4,27 +4,28 @@ import { useHistory } from 'react-router-dom';
 import { Grid, Paper, Avatar, TextField, Button, Typography, Link } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
+
 const initialState = {
-    credentials: {
-        username: '',
-        password: ''
-    }
-}
+  credentials: {
+    username: "",
+    password: "",
+  },
+};
 
 const Login = () => {
-    const [state, setState] = useState(initialState)
-    const [error, setError] = useState('')
+  const [state, setState] = useState(initialState);
+  const [error, setError] = useState("");
 
-    const { push } = useHistory();
+  const { push } = useHistory();
 
-    const handleChange = event => {
-        setState({
-            credentials: {
-            ...state.credentials,
-            [event.target.name]: event.target.value
-            }
-        })
-    }
+  const handleChange = (event) => {
+    setState({
+      credentials: {
+        ...state.credentials,
+        [event.target.name]: event.target.value,
+      },
+    });
+  };
 
     const handleLogin = event => {
         event.preventDefault();
