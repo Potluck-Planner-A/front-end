@@ -1,12 +1,15 @@
 // Import dependencies
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-
-// Here's where the styling will go
+import styled from 'styled-components';
 
 // Import component
 import ViewEvent from './ViewEvent';
+
+// Stylings
+const StyledContainer = styled.div`
+    margin-top: 80px;
+`;
 
 // Until proper stuff is set up to pull from I'll be using PokeAPI
 
@@ -38,7 +41,7 @@ const EventList = () => {
 
     // Render content
     return (
-        <div className='eventList'>
+        <StyledContainer className='eventList'>
             {
                 events.map(event => {
                     return (
@@ -54,7 +57,7 @@ const EventList = () => {
                     )
                 })
             }
-        </div>
+        </StyledContainer>
     )
 };
 

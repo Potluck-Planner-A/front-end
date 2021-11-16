@@ -1,10 +1,7 @@
 // Import dependencies
 import React, { useState, useEffect } from 'react'
-import axios from 'axios';
 
 // Here's where the styling will go
-
-// Until proper stuff is set up to pull from I'll be using PokeAPI
 
 // Exported component
 const ViewEvent = (props) => {
@@ -18,8 +15,6 @@ const ViewEvent = (props) => {
     const toggleDetails = () => {
         setDetails(!details);
     };
-
-     //----------------  Side Effcts  ----------------//
     
     // Render content
     return (
@@ -28,7 +23,11 @@ const ViewEvent = (props) => {
                 {details === false ? 'View Details' : 'Close'}
             </button>
             {details === true ? 
-                    <h3>{event.name}</h3>
+                    <div className='details'>
+                        <h3>{event.name}</h3>
+                        <p>Beep</p>
+                        <p>Boop</p>
+                    </div>
                 : ''}
         </div>
     )

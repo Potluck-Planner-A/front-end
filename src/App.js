@@ -22,8 +22,8 @@ function App() {
           <Route path='/register' component={Register}/>
           <Route path='/login' component={Login}/>
           <Route exact path='/logout' component={Logout}/>
-          {/* <Route path='/' component={Home}/> */}
-          <Route path='/' component={EventList} />
+          <Route path='/' component={Home}/>
+          <Route path='/view-event' component={EventList} />
         </Switch>
       </div>
     
