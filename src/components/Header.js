@@ -8,6 +8,7 @@ import {
   makeStyles,
   Button,
   IconButton,
+  Drawer,
 } from "@material-ui/core";
 
 const headersData = [
@@ -91,6 +92,8 @@ const Header = () => {
   const displayMobile = () => {
     const openDrawer = () =>
       setState((prevState) => ({ ...prevState, drawerOpen: true }));
+    const closeDrawer = () =>
+      setState((prevState) => ({ ...prevState, drawerOpen: false }));
 
     return (
       <Toolbar>
@@ -105,6 +108,15 @@ const Header = () => {
         >
           <MenuIcon />
         </IconButton>
+        <Drawer
+          {...{
+            anchor: "left",
+            open: drawerOpen,
+            onClose: closeDrawer,
+          }}
+        >
+          <div>{getDrawerChoices}</div>
+        </Drawer>
         <div>{potluckPlannerLogo}</div>
       </Toolbar>
     );
