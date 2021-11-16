@@ -44,7 +44,7 @@ const NewEvent = () => {
                     <input
                         value={formValues.date}
                         name="date"
-                        type={text}
+                        type="text"
                         onChange={change}
                         placeholder="Date of Potluck"
                     />
@@ -53,6 +53,7 @@ const NewEvent = () => {
                     <input
                         value={formValues.location}
                         name="location"
+                        type="text"
                         onChange={change}
                         placeholder="Address of Location"
                     />
@@ -61,6 +62,7 @@ const NewEvent = () => {
                     <input
                         value={formValues.guests}
                         name="guests"
+                        type="text"
                         onChange={change}
                         placeholder="Invite Guests"
                     />
@@ -69,6 +71,7 @@ const NewEvent = () => {
                     <input
                         value={formValues.food}
                         name="food"
+                        type="text"
                         onChange={change}
                         placeholder="Add Food Items"
                     />
