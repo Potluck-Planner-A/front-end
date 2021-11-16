@@ -1,18 +1,18 @@
 import React, { useState } from 'react'
 
 const fakeData = [
-  {date: '11/28/2021',
-  location: '4231 Westover St Georgetown, SD, 54063',
-  guests: ['Millie', 'Maggie', 'Melvin', 'Murry', 'Murphy'],
-  food: ['Potatoes & Gravy', 'Roles', 'Ham', 'Drinks', 'stuffing']},
-  {date: '11/27/2021',
-  location: '4231 Westover St Georgetown, SD, 54063',
-  guests: ['Millie', 'Maggie', 'Melvin', 'Murry', 'Murphy'],
-  food: ['Potatoes & Gravy', 'Roles', 'Ham', 'Drinks', 'stuffing']}, 
-  {date: '11/24/2021',
-  location: '4231 Westover St Merksville, SD, 54063',
-  guests: ['Millie', 'Maggie', 'Melvin', 'Murry', 'Murphy'],
-  food: ['Potatoes & Gravy', 'Roles', 'Ham', 'Drinks', 'stuffing']},]
+    {date: '11/28/2021',
+    location: '4231 Westover St Georgetown, SD, 54063',
+    guests: ['Mils', 'Marge', 'Melmer', 'Murcus', 'Murphy'],
+    food: ['Potatoes & Gravy', 'Roles', 'Ham', 'Drinks', 'stuffing']},
+    {date: '11/27/2021',
+    location: '4231 Jackson St Welmingtion, NY, 54063',
+    guests: ['Millie', 'Maggie', 'Melvin', 'Murry', 'Murphy'],
+    food: ['Toast', 'Butter', 'Jam', 'Drinks', 'Peanut Butter']}, 
+    {date: '11/24/2021',
+    location: '4231 Endsridge St Merksville, SD, 54063',
+    guests: ['Remington', 'Jack', 'Tyson', 'Jacob', 'Joseph'],
+    food: ['Eggs', 'Hashbrowns', 'Pancakes', 'Orange slices', 'Milk']},]
 
 const NewEvent = () => {
 
