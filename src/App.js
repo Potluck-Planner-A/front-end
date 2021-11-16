@@ -13,7 +13,7 @@ function App() {
   return (
     <>
       <div className='App'>
-        {/* <Header /> */}
+        <Header />
         <Switch>
           <Route path='/newevent' component={NewEvent} />
           <Route path='/register' component={Register} />
