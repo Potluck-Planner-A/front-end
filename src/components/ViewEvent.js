@@ -13,12 +13,11 @@ const ViewEvent = (props) => {
     const { event } = props;
     // Details that can be changed based on ID
     const [details, setDetails] = useState(false);
-    const [eventId, setEventId] = useState(null);
 
     //----------------  Creating Helpers  ----------------//
     const toggleDetails = () => {
         setDetails(!details);
-    }    ;
+    };
 
      //----------------  Side Effcts  ----------------//
     
@@ -28,6 +27,9 @@ const ViewEvent = (props) => {
             <button onClick={toggleDetails}>
                 {details === false ? 'View Details' : 'Close'}
             </button>
+            {details === true ? 
+                    <h3>{event.name}</h3>
+                : ''}
         </div>
     )
 };
