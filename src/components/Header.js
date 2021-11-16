@@ -9,6 +9,8 @@ import {
   Button,
   IconButton,
   Drawer,
+  Link,
+  MenuItem,
 } from "@material-ui/core";
 
 const headersData = [
@@ -120,6 +122,24 @@ const Header = () => {
         <div>{potluckPlannerLogo}</div>
       </Toolbar>
     );
+  };
+
+  const getDrawerChoices = () => {
+    return headersData.map(({ label, href }) => {
+      return (
+        <Link
+          {...{
+            component: RouterLink,
+            to: href,
+            color: "inherit",
+            style: { textDecoration: "none" },
+            key: label,
+          }}
+        >
+          <MenuItem>{label}</MenuItem>
+        </Link>
+      );
+    });
   };
 
   const potluckPlannerLogo = (
