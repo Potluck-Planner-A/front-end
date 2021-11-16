@@ -10,7 +10,7 @@ const fakeData = [
   guests: ['Millie', 'Maggie', 'Melvin', 'Murry', 'Murphy'],
   food: ['Potatoes & Gravy', 'Roles', 'Ham', 'Drinks', 'stuffing']}, 
   {date: '11/24/2021',
-  location: '4231 Westover St Georgetown, SD, 54063',
+  location: '4231 Westover St Merksville, SD, 54063',
   guests: ['Millie', 'Maggie', 'Melvin', 'Murry', 'Murphy'],
   food: ['Potatoes & Gravy', 'Roles', 'Ham', 'Drinks', 'stuffing']},]
 
@@ -53,6 +53,7 @@ const NewEvent = () => {
                     <input
                         value={formValues.location}
                         name="location"
+                        type={text}
                         onChange={change}
                         placeholder="Address of Location"
                     />
@@ -61,6 +62,7 @@ const NewEvent = () => {
                     <input
                         value={formValues.guests}
                         name="guests"
+                        type={text}
                         onChange={change}
                         placeholder="Invite Guests"
                     />
@@ -69,11 +71,12 @@ const NewEvent = () => {
                     <input
                         value={formValues.food}
                         name="food"
+                        type={text}
                         onChange={change}
                         placeholder="Add Food Items"
                     />
                 </label>
-                <input type="submit" value="Add a potLuck" />
+                <input type="submit" value="Add a PotLuck" />
             </form>
         </div>
     )
