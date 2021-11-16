@@ -7,7 +7,7 @@ import Login from './components/Login';
 import Logout from './components/Logout';
 import NewEvent from './components/NewEvent';
 import Register from './components/Register';
-// import PrivateRoute from './components/PrivateRoute';
+import PrivateRoute from './components/PrivateRoute';
 
 
 function App() {
