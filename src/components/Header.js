@@ -20,11 +20,11 @@ const headersData = [
   },
   {
     label: "Create Event",
-    href: "/createevent",
+    href: "/CreateEvent",
   },
   {
     label: "Upcoming Events",
-    href: "/upcomingevents",
+    href: "/UpcomingEvents",
   },
   {
     label: "Logout",
@@ -45,6 +45,7 @@ const useStyles = makeStyles(() => ({
     fontFamily: "Droid Sans, sans-serif",
     fontWeight: 600,
     color: "#ffffff",
+    textAlign: "left",
   },
   menuButton: {
     fontFamily: "Fira Sans, sans-serif",
@@ -114,16 +115,13 @@ const Header = () => {
           <MenuIcon />
         </IconButton>
         <Drawer
-          anchor='left'
-          open={drawerOpen}
-          onClose={closeDrawer}
           {...{
             anchor: "left",
             open: drawerOpen,
             onClose: closeDrawer,
           }}
         >
-          <div className={drawerContainer}>{getDrawerChoices}</div>
+          <div className={drawerContainer}>{getDrawerChoices()}</div>
         </Drawer>
         <div>{potluckPlannerLogo}</div>
       </Toolbar>
