@@ -56,10 +56,13 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     justifyContent: "space-between",
   },
+  drawerContainer: {
+    padding: "20px 30px",
+  },
 }));
 
 const Header = () => {
-  const { header, logo, menuButton, toolbar } = useStyles();
+  const { header, logo, menuButton, toolbar, drawerContainer } = useStyles();
   const [state, setState] = useState({
     mobileView: false,
     drawerOpen: false,
@@ -111,13 +114,16 @@ const Header = () => {
           <MenuIcon />
         </IconButton>
         <Drawer
+          anchor='left'
+          open={drawerOpen}
+          onClose={closeDrawer}
           {...{
             anchor: "left",
             open: drawerOpen,
             onClose: closeDrawer,
           }}
         >
-          <div>{getDrawerChoices}</div>
+          <div className={drawerContainer}>{getDrawerChoices}</div>
         </Drawer>
         <div>{potluckPlannerLogo}</div>
       </Toolbar>
