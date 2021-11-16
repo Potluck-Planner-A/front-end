@@ -34,6 +34,9 @@ const useStyles = makeStyles(() => ({
     backgroundColor: "#000000",
     paddingRight: "80px",
     paddingLeft: "50px",
+    "@media (max-width: 900px)": {
+      paddingLeft: 0,
+    },
   },
   logo: {
     fontFamily: "Droid Sans, sans-serif",
@@ -56,9 +59,10 @@ const Header = () => {
   const { header, logo, menuButton, toolbar } = useStyles();
   const [state, setState] = useState({
     mobileView: false,
+    drawerOpen: false,
   });
 
-  const { mobileView } = state;
+  const { mobileView, drawerOpen } = state;
 
   useEffect(() => {
     const setResponsiveness = () => {
@@ -85,6 +89,9 @@ const Header = () => {
   };
 
   const displayMobile = () => {
+    const openDrawer = () =>
+      setState((prevState) => ({ ...prevState, drawerOpen: true }));
+
     return (
       <Toolbar>
         <IconButton
@@ -93,6 +100,7 @@ const Header = () => {
             color: "inherit",
             "aria-label": "menu",
             "aria-haspopup": "true",
+            onClick: openDrawer,
           }}
         >
           <MenuIcon />
