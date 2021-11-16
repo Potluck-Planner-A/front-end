@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Link as RouterLink } from "react-router-dom";
+import MenuIcon from "@material-ui/icons/Menu";
 import {
   AppBar,
   Toolbar,
   Typography,
   makeStyles,
   Button,
+  IconButton,
 } from "@material-ui/core";
-import { Link as RouterLink } from "react-router-dom";
 
 const headersData = [
   {
@@ -52,12 +54,50 @@ const useStyles = makeStyles(() => ({
 
 const Header = () => {
   const { header, logo, menuButton, toolbar } = useStyles();
+  const [state, setState] = useState({
+    mobileView: false,
+  });
+
+  const { mobileView } = state;
+
+  useEffect(() => {
+    const setResponsiveness = () => {
+      return window.innerWidth < 900
+        ? setState((prevState) => ({ ...prevState, mobileView: true }))
+        : setState((prevState) => ({ ...prevState, mobileView: false }));
+    };
+
+    setResponsiveness();
+    window.addEventListener("resize", () => setResponsiveness());
+
+    return () => {
+      window.removeEventListener("resize", () => setResponsiveness());
+    };
+  }, []);
 
   const displayDesktop = () => {
     return (
       <Toolbar className={toolbar}>
         {potluckPlannerLogo}
         <div>{getMenuButtons()}</div>
+      </Toolbar>
+    );
+  };
+
+  const displayMobile = () => {
+    return (
+      <Toolbar>
+        <IconButton
+          {...{
+            edge: "start",
+            color: "inherit",
+            "aria-label": "menu",
+            "aria-haspopup": "true",
+          }}
+        >
+          <MenuIcon />
+        </IconButton>
+        <div>{potluckPlannerLogo}</div>
       </Toolbar>
     );
   };
@@ -88,7 +128,9 @@ const Header = () => {
 
   return (
     <header>
-      <AppBar className={header}>{displayDesktop()}</AppBar>
+      <AppBar className={header}>
+        {mobileView ? displayMobile() : displayDesktop()}
+      </AppBar>
     </header>
   );
 };
