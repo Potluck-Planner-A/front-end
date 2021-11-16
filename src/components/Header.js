@@ -6,7 +6,7 @@ import {
   makeStyles,
   Button,
 } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 
 const headersData = [
   {
@@ -30,29 +30,40 @@ const headersData = [
 const useStyles = makeStyles(() => ({
   header: {
     backgroundColor: "#000000",
+    paddingRight: "80px",
+    paddingLeft: "50px",
   },
   logo: {
-    fontFamily: "Fira Sans, sans-serif",
+    fontFamily: "Droid Sans, sans-serif",
     fontWeight: 600,
     color: "#ffffff",
-    textAlign: "left",
+  },
+  menuButton: {
+    fontFamily: "Fira Sans, sans-serif",
+    fontWeight: 700,
+    size: "20px",
+    marginLeft: "40px",
+  },
+  toolbar: {
+    display: "flex",
+    justifyContent: "space-between",
   },
 }));
 
 const Header = () => {
-  const { header, logo } = useStyles();
+  const { header, logo, menuButton, toolbar } = useStyles();
 
   const displayDesktop = () => {
     return (
-      <Toolbar>
+      <Toolbar className={toolbar}>
         {potluckPlannerLogo}
-        {getMenuButtons()}
+        <div>{getMenuButtons()}</div>
       </Toolbar>
     );
   };
 
   const potluckPlannerLogo = (
-    <Typography variant='h6' component='h1'>
+    <Typography variant='h6' component='h1' className={logo}>
       Potluck Planner
     </Typography>
   );
@@ -65,7 +76,8 @@ const Header = () => {
             key: label,
             color: "inherit",
             to: href,
-            component: Link,
+            component: RouterLink,
+            className: menuButton,
           }}
         >
           {label}
