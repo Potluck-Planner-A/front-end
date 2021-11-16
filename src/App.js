@@ -23,7 +23,7 @@ function App() {
           <Route path='/login' component={Login}/>
           <Route exact path='/logout' component={Logout}/>
           <Route path='/' component={Home}/>
-          <Route path='/view-event' component={EventList} />
+          <Route path='/events' component={EventList} />
         </Switch>
       </div>
     
