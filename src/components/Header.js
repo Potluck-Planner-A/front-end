@@ -19,12 +19,8 @@ const headersData = [
     href: "/",
   },
   {
-    label: "My Events",
-    href: "/eventslist",
-  },
-  {
-    label: "Create New Event",
-    href: "/newevent",
+    label: "Create Event",
+    href: "/CreatEvent",
   },
   {
     label: "Upcoming Events",

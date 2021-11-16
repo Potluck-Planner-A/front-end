@@ -13,8 +13,7 @@ function App() {
   return (
     <>
       <div className='App'>
-        <Header />
-        <Home />
+        {/* <Header /> */}
         <Switch>
           <Route path='/newevent' component={NewEvent} />
           <Route path='/register' component={Register} />
@@ -24,7 +23,7 @@ function App() {
         </Switch>
       </div>
 
-      <p>hello world</p>
+      {/* <p>hello world</p> */}
     </>
   );
 }
