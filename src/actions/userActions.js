@@ -9,7 +9,7 @@ export const registerNewUser = (newUser) => {
       //  dispatch(fetchStart());
        console.log('FETCHING new user')
        //dispatch({type:FETCH_START})
-       axios.get('http://buildweekpotlucklambda.herokuapp.com/api/users/register', newUser)
+       axios.post('http://buildweekpotlucklambda.herokuapp.com/api/users/register', newUser)
          .then(res=> {
             console.log(res)
          //   dispatch(fetchSuccess(res.data.results[0]));
