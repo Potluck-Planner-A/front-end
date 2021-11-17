@@ -10,14 +10,13 @@ const StyledBackground = styled.div`
 `;
 
 const StyledText = styled.div`
-  color: #000;
-  width: 60vw;
+  color: #808000;
+  width: 45vw;
   background: rgba(255, 255, 255, 0.8);
   border-radius: 5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border: 1px solid red;
 `;
 
 const Home = () => {
@@ -25,8 +24,8 @@ const Home = () => {
     <StyledBackground>
       <div className='textContainer'>
         <StyledText>
-          <h1>Welcome to Potluck Planner!</h1>
-          <p>A place to plan and organize a potluck with friends and family</p>
+          <h1>Potluck Planner</h1>
+          <p>Plan and organize potlucks with friends and family</p>
         </StyledText>
       </div>
     </StyledBackground>
