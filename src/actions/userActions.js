@@ -46,7 +46,24 @@ export const getUsers = () => {
 
 
 //axios.post  -- login
-
+export const userLogin = (id) =>{
+   return (dispatch) => {
+      console.log('GETTING new users')
+       dispatch(fetchStart());
+       //dispatch({type:FETCH_START})
+       axios.post(`https://buildweekpotlucklambda.herokuapp.com/api/users/login/${id}`)
+         .then(res=> {
+            console.log(res)
+         //   dispatch(fetchSuccess(res.data.results[0]));
+           //dispatch({type:FETCH_SUCCESS, payload:res.data.results[0]})
+       })
+       .catch(err => {
+          console.error(err)
+         //   dispatch(fetchFail(err));
+           //dispatch({type:FETCH_ERROR, payload:err})
+       });
+   }
+}
 
 
 export const FETCH_START = 'FETCH_START';
