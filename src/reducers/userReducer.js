@@ -1,10 +1,13 @@
 //! this component is for the userLogin ...
 //need imports from actions
+import { FETCH_START, FETCH_SUCCESS, FETCH_FAIL } from "../actions/userActions"
 
 export const initialState = {
    user: {
-      //we may have to do this in a different reducer
-      name: '',
+      //we may have to do this in a different reducer 
+      //?? this reducer might remain reserved for the users? 
+      //todo: honestly i dont see a reason for getUserss
+      // name: '',
       username: '',
       password: '',
       email: ''
@@ -28,7 +31,7 @@ const userReducer = (state = initialState, action) => {
          console.log('fetch is happening')
          return {
             ...state,
-            user: [],
+            user: action.payload,
             isFetching: false,
             error: ''
          }
