@@ -8,15 +8,17 @@ const StyledBackground = styled.div`
 `;
 
 const StyledH1 = styled.h1`
-  color: #c1b759;
+  color: #700207;
+  background: rgba(255, 255, 255, 0.7);
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
 `;
 
 const StyledP = styled.p`
-  color: #c1b759;
+  color: #700207;
+  background: rgba(255, 255, 255, 0.7);
   font-size: 1.5em;
   display: flex;
   flex-direction: row;
