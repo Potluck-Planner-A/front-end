@@ -4,13 +4,17 @@ import { useHistory } from 'react-router-dom';
 import { Grid, Paper, Avatar, TextField, Button, Typography, Link } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
+import { connect } from 'react-redux';
+import { userLogin } from './../actions/userActions'
+
 
 const initialState = {
     username: "",
     password: "",
 };
 
-const Login = () => {
+const Login = (props) => {
+    console.log(props)
   const [credentials, setCredentials] = useState(initialState);
 
   const { push } = useHistory();
@@ -22,17 +26,20 @@ const Login = () => {
     });
   };
 
-    const handleLogin = event => {
+    const handleLogin = (event, user) => {
         event.preventDefault();
-        axios.post('https://buildweekpotlucklambda.herokuapp.com/api/users/login', credentials)
-            .then(res => {
-                console.log(res)
-                localStorage.setItem('token', res.data.token);
+
+        props.userLogin(user)
+
+        // axios.post('https://buildweekpotlucklambda.herokuapp.com/api/users/login', credentials)
+        //     .then(res => {
+        //         console.log(res)
+        //         localStorage.setItem('token', res.data.token);
                 push('/newevent');
-            })
-            .catch(error => {
-                console.log({error})
-            })
+        //     })
+        //     .catch(error => {
+        //         console.log({error})
+        //     })
     }
 
     const handleSignUpClick = event => {
@@ -101,4 +108,10 @@ const Login = () => {
     );
 }
 
-export default Login;
+const mapStateToProps = (state) =>{
+    return {
+        user: state.userReducer.user
+    }
+}
+
+export default connect(mapStateToProps, { userLogin })(Login);
