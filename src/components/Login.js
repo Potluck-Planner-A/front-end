@@ -6,36 +6,32 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
 
 const initialState = {
-  credentials: {
     username: "",
     password: "",
-  },
 };
 
 const Login = () => {
-  const [state, setState] = useState(initialState);
-  const [error, setError] = useState("");
+  const [credentials, setCredentials] = useState(initialState);
 
   const { push } = useHistory();
 
   const handleChange = (event) => {
-    setState({
-      credentials: {
-        ...state.credentials,
+    setCredentials({
+        ...credentials,
         [event.target.name]: event.target.value,
-      },
     });
   };
 
     const handleLogin = event => {
         event.preventDefault();
-        axios.post('http://localhost:5000/api/login', state.credentials)
-            .then(response => {
-                localStorage.setItem('token', response.data.token);
-                push('/view');
+        axios.post('https://buildweekpotlucklambda.herokuapp.com/api/users/login', credentials)
+            .then(res => {
+                console.log(res)
+                localStorage.setItem('token', res.data.token);
+                push('/newevent');
             })
             .catch(error => {
-                setError(error.response.data.error)
+                console.log({error})
             })
     }
 
@@ -72,7 +68,7 @@ const Login = () => {
                             type='text'
                             placeholder='enter username'
                             name='username'
-                            value={state.credentials.username}
+                            value={credentials.username}
                             onChange={handleChange}
                             fullWidth
                         />
@@ -84,20 +80,18 @@ const Login = () => {
                             type='password' 
                             placeholder='enter password'
                             name='password'
-                            value={state.credentials.password}
+                            value={credentials.password}
                             onChange={handleChange}
                             fullWidth
                         />
 
-                        <Button color='#626262' variant='contained' style={buttonStyle} fullWidth>Sign In</Button>
+                        <Button variant='contained' type='submit' style={buttonStyle} fullWidth>Sign In</Button>
 
                         <Typography style={headerStyle}> Don't have an account?
                             <Link onClick={handleSignUpClick} style={linkStyle} href='#' >
                                 Sign Up
                             </Link>
                         </Typography>
-
-                        {error && <p id='error'>{error}</p>}
 
                     </form>
                 </div>
