@@ -12,7 +12,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from "react-router-dom";
 
-import rootReducer from './reducers'
+import rootReducer from './reducers/index'
 
 const store = createStore(rootReducer,  applyMiddleware(logger, thunk));
 

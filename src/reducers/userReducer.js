@@ -17,7 +17,7 @@ export const initialState = {
 
 }
 
-const userReducer = (state = initialState, action) => {
+export const userReducer = (state = initialState, action) => {
    switch(action.type) {
       case FETCH_START:
          console.log('fetch is happening')
@@ -47,5 +47,3 @@ const userReducer = (state = initialState, action) => {
          return state;
    }
 }
-
-export default userReducer

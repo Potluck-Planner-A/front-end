@@ -1,7 +1,7 @@
 //will serve normal, non-token issues
 import axios from 'axios';
 //will serve protected routes
-import axiosWithAuth from './../utils/axiosWithAuth';
+// import axiosWithAuth from './../utils/axiosWithAuth';
 
 //axios.post -- register new user
 export const registerNewUser = (newUser) => {
