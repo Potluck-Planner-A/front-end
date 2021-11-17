@@ -12,9 +12,8 @@ const StyledBackground = styled.div`
 const StyledText = styled.div`
   color: #808000;
   width: 50vw;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.85);
   border-radius: 5rem;
-  /* box-shadow: 2px 2px 6px #000000; */
   box-shadow: 1px 1px 2px black, 0 0 25px black, 0 0 5px black;
 `;
 
