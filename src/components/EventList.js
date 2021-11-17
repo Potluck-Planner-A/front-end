@@ -43,7 +43,7 @@ const EventList = () => {
                 events.map(event => {
                     return (
                         <div className='events'>
-                            <h2>{event.name}</h2>
+                            <h2>TEST</h2>
                             <p>When the date is available it's go here</p>
                             <p>When the location is added it'll go here</p>
 
