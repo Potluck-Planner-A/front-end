@@ -1,27 +1,63 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
 const fakeData = [
-  {date: '11/28/2021',
+  {name: 'Brekky with Friends',
+  organizer: 'Todd Howard',
+  date: '11/28/2021',
   location: '4231 Westover St Georgetown, SD, 54063',
   guests: ['Millie', 'Maggie', 'Melvin', 'Murry', 'Murphy'],
   food: ['Potatoes & Gravy', 'Roles', 'Ham', 'Drinks', 'stuffing']},
-  {date: '11/27/2021',
+  {name: 'Brekky with Friends',
+  organizer: 'Todd Howard',
+  date: '11/27/2021',
   location: '4231 Westover St Georgetown, SD, 54063',
   guests: ['Millie', 'Maggie', 'Melvin', 'Murry', 'Murphy'],
   food: ['Potatoes & Gravy', 'Roles', 'Ham', 'Drinks', 'stuffing']}, 
-  {date: '11/24/2021',
+  {name: 'Brekky with Friends',
+  organizer: 'Todd Howard',
+  date: '11/24/2021',
   location: '4231 Westover St Georgetown, SD, 54063',
   guests: ['Millie', 'Maggie', 'Melvin', 'Murry', 'Murphy'],
   food: ['Potatoes & Gravy', 'Roles', 'Ham', 'Drinks', 'stuffing']},]
 
+  const StyledDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 100px auto;
+  `
+  const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  margin: 0 450px;
+  `
+  const StyledLabel = styled.label`
+  display: flex;
+  flex-direction: row;
+  margin: 5px;
+  justify-content: space-between;
+  height: auto;
+  border-radius: 15px;
+  `
+
+const StyledButton = styled.label`
+display: flex;
+flex-direction: row;
+margin: 20px;
+justify-content: center;
+height: 20px;
+`
+
 const NewEvent = () => {
 
-    const [ formValues, setFromValues ] = useState({date: '', location: '', guests: '', food: ''});
+    const [ formValues, setFromValues ] = useState({name: '', organizer: '', date: '', location: '', guests: '', food: ''});
     const [ potluck, setPotluck ] = useState(fakeData);
 
     const submit = (evt) => {
         evt.preventDefault();
         const newPotluck = {
+            name: formValues.name.trim(),
+            organizer: formValues.organizer.trim(),
             date: formValues.date.trim(),
             location: formValues.location.trim(),
             guests: formValues.guests.trim(),
@@ -37,10 +73,31 @@ const NewEvent = () => {
     }
 
     return (
-        <div>
-            <h2>Potluck Planner</h2>
-            <form onSubmit={submit}>
-                <label>Date:
+        <StyledDiv>
+            <h2>Start Planning!</h2>
+            <StyledForm onSubmit={submit}>
+            <StyledLabel>
+                <p>Name:</p>
+                    <input
+                        value={formValues.name}
+                        name="name"
+                        type="text"
+                        onChange={change}
+                        placeholder="Enter your name"
+                    />
+                </StyledLabel>
+                <StyledLabel>
+                    <p>Organizer:</p> 
+                    <input
+                        value={formValues.organizer}
+                        name="organizer"
+                        type="text"
+                        onChange={change}
+                        placeholder="Organizer of Potluck"
+                    />
+                </StyledLabel>
+                <StyledLabel>
+                    <p>Date:</p> 
                     <input
                         value={formValues.date}
                         name="date"
@@ -48,8 +105,9 @@ const NewEvent = () => {
                         onChange={change}
                         placeholder="Date of Potluck"
                     />
-                </label>
-                <label>Location:
+                </StyledLabel>
+                <StyledLabel>
+                    <p>Location:</p> 
                     <input
                         value={formValues.location}
                         name="location"
@@ -57,8 +115,9 @@ const NewEvent = () => {
                         onChange={change}
                         placeholder="Address of Location"
                     />
-                </label>
-                <label>Add Guests:
+                </StyledLabel>
+                <StyledLabel>
+                    <p>Add Guests:</p>
                     <input
                         value={formValues.guests}
                         name="guests"
@@ -66,8 +125,9 @@ const NewEvent = () => {
                         onChange={change}
                         placeholder="Invite Guests"
                     />
-                </label>
-                <label>Food Items:
+                </StyledLabel>
+                <StyledLabel>
+                    <p>Food Items:</p>
                     <input
                         value={formValues.food}
                         name="food"
@@ -75,10 +135,12 @@ const NewEvent = () => {
                         onChange={change}
                         placeholder="Add Food Items"
                     />
-                </label>
-                <input type="submit" value="Add a potLuck" />
-            </form>
-        </div>
+                </StyledLabel>
+                <StyledButton>
+                    <input type="submit" value="Add a Potluck" />
+                </StyledButton>
+            </StyledForm>
+        </StyledDiv>
     )
 }
 
