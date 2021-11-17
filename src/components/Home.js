@@ -11,12 +11,11 @@ const StyledBackground = styled.div`
 
 const StyledText = styled.div`
   color: #808000;
-  width: 45vw;
+  width: 50vw;
   background: rgba(255, 255, 255, 0.8);
   border-radius: 5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  /* box-shadow: 2px 2px 6px #000000; */
+  box-shadow: 1px 1px 2px black, 0 0 25px black, 0 0 5px black;
 `;
 
 const Home = () => {
@@ -25,7 +24,7 @@ const Home = () => {
       <div className='textContainer'>
         <StyledText>
           <h1>Potluck Planner</h1>
-          <p>Plan and organize potlucks with friends and family</p>
+          <p>Plan & organize your next potluck with friends & family</p>
         </StyledText>
       </div>
     </StyledBackground>
