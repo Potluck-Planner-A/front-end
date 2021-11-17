@@ -25,21 +25,29 @@ const fakeData = [
   background-image: url("https://253qv1sx4ey389p9wtpp9sj0-wpengine.netdna-ssl.com/wp-content/uploads/2018/11/Dishes_at_Potluck.jpg");
   height: 100vh;
   background-size: cover;
-  color: white;
-`;
+  @media (max-width: 1200px) {
+      background-size: contain;
+  }
+`
   const StyledDiv = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 30px auto;
+  margin: 50px auto;
   `
   const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   padding: 50px;
-  margin: 0 400px;
-  background-color: #fff;
+  margin: 50px auto 0;
+  background: rgba(255, 255, 255, 0.85);
   border-radius: 15px;
-  color: black;
+  color: #808000;
+  height: auto;
+  border: black solid 1.5px;
+  @media (max-width: 1200px) {
+      margin: 50px auto;
+      padding: 30px;
+  }
   `
   const StyledLabel = styled.label`
   display: flex;
@@ -48,6 +56,10 @@ const fakeData = [
   justify-content: space-between;
   height: auto;
   border-radius: 15px;
+  @media (max-width: 400px) {
+      flex-direction: column;
+
+  }
   `
 
 const StyledButton = styled.label`
@@ -66,15 +78,15 @@ const NewEvent = () => {
     const submit = (evt) => {
         evt.preventDefault();
         const newPotluck = {
-            name: formValues.name.trim(),
-            organizer: formValues.organizer.trim(),
-            date: formValues.date.trim(),
-            location: formValues.location.trim(),
-            guests: formValues.guests.trim(),
-            food: formValues.food.trim(),
+            name: formValues.name,
+            organizer: formValues.organizer,
+            date: formValues.date,
+            location: formValues.location,
+            guests: formValues.guests,
+            food: formValues.food,
         }
         setPotluck(potluck.concat(newPotluck))
-        setFromValues({date: '', location: '', guests: '', food: ''})
+        setFromValues({name: '', organizer: '', date: '', location: '', guests: '', food: ''})
     }
 
     const change = (evt) => {
