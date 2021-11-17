@@ -91,7 +91,7 @@ const Login = () => {
 
                         <Button color='#626262' variant='contained' style={buttonStyle} fullWidth>Sign In</Button>
 
-                        <Typography> Don't have an account?
+                        <Typography style={headerStyle}> Don't have an account?
                             <Link onClick={handleSignUpClick} style={linkStyle} href='#' >
                                 Sign Up
                             </Link>
