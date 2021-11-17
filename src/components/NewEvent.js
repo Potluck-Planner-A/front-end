@@ -21,15 +21,25 @@ const fakeData = [
   guests: ['Millie', 'Maggie', 'Melvin', 'Murry', 'Murphy'],
   food: ['Potatoes & Gravy', 'Roles', 'Ham', 'Drinks', 'stuffing']},]
 
+  const StyledBackground = styled.div`
+  background-image: url("https://253qv1sx4ey389p9wtpp9sj0-wpengine.netdna-ssl.com/wp-content/uploads/2018/11/Dishes_at_Potluck.jpg");
+  height: 100vh;
+  background-size: cover;
+  color: white;
+`;
   const StyledDiv = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 100px auto;
+  margin: 30px auto;
   `
   const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  margin: 0 450px;
+  padding: 50px;
+  margin: 0 400px;
+  background-color: #fff;
+  border-radius: 15px;
+  color: black;
   `
   const StyledLabel = styled.label`
   display: flex;
@@ -43,7 +53,7 @@ const fakeData = [
 const StyledButton = styled.label`
 display: flex;
 flex-direction: row;
-margin: 20px;
+margin: 12px;
 justify-content: center;
 height: 20px;
 `
@@ -73,9 +83,10 @@ const NewEvent = () => {
     }
 
     return (
+        <StyledBackground>
         <StyledDiv>
-            <h2>Start Planning!</h2>
             <StyledForm onSubmit={submit}>
+            <h2>Start Planning!</h2>
             <StyledLabel>
                 <p>Name:</p>
                     <input
@@ -141,6 +152,7 @@ const NewEvent = () => {
                 </StyledButton>
             </StyledForm>
         </StyledDiv>
+        </StyledBackground>
     )
 }
 
