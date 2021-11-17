@@ -1,3 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Antic&display=swap");
+
 .App {
   text-align: center;
 }
@@ -35,4 +39,25 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.textContainer {
+  height: 100vh;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+}
+
+.textContainer h1 {
+  font-size: 4rem;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: "Kaushan Script", cursive;
+}
+
+.textContainer p {
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-family: "Antic", sans-serif;
 }
