@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-// import "../index.css";
-import "../App.css";
 
 const StyledBackground = styled.div`
   background-image: url("https://253qv1sx4ey389p9wtpp9sj0-wpengine.netdna-ssl.com/wp-content/uploads/2018/11/Dishes_at_Potluck.jpg");
@@ -10,33 +8,26 @@ const StyledBackground = styled.div`
   margin-top: 64px;
 `;
 
-const StyledH1 = styled.h1`
+const StyledText = styled.div`
   color: #700207;
+  width: 50vw;
+  margin: 0 auto;
   background: rgba(255, 255, 255, 0.7);
-  border-radius: 10rem;
+  border-radius: 5rem;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-`;
-
-const StyledP = styled.p`
-  color: #700207;
-  background: rgba(255, 255, 255, 0.7);
-  border-radius: 10rem;
-  font-size: 1.5em;
-  display: flex;
-  justify-content: center;
+  /* border: 1px solid red; */
 `;
 
 const Home = () => {
   return (
     <StyledBackground>
       <div className='homepage-text'>
-        <StyledH1>
+        <StyledText>
           <h1>Welcome to Potluck Planner!</h1>
-        </StyledH1>
-        <StyledP>
           <p>A place to plan and organize a potluck with friends and family</p>
-        </StyledP>
+        </StyledText>
       </div>
     </StyledBackground>
   );
