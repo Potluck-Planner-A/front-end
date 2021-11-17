@@ -39,18 +39,26 @@ const Login = () => {
             })
     }
 
-    const paperStyle = {padding: 20, height: '70vh', width: 280, margin: '5rem auto'}
-    const avatarStyle = {backgroundColor:'#626262'}
-    const buttonStyle = {margin: '0.8rem 0'}
+    const handleSignUpClick = event => {
+        event.preventDefault();
+        push('/register')
+    }
+
+    const paperStyle = {padding: 20, height: '70vh', width: 280, margin: '6rem auto'}
+    const avatarStyle = {backgroundColor:'#626262', width: '4rem', height: '4rem'}
+    const buttonStyle = {margin: '0.8rem 0', backgroundColor: '#a9a9ff', fontFamily: 'Outfit, sans-serif'}
     const textboxStyle = {margin: '0.8rem 0'}
+    const headerStyle = {fontFamily: 'Outfit, sans-serif'}
+    const linkStyle = {fontFamily: 'Outfit, sans-serif', margin: '0 0.4rem'}
+    const iconStyle = {fontSize: '3rem'}
 
     return (
         <Grid>
             <Paper elevation={10} style={paperStyle}>
 
                 <Grid align='center'>
-                    <Avatar style={avatarStyle}> <LockOutlinedIcon/> </Avatar>
-                    <h2>Sign In</h2>
+                    <Avatar style={avatarStyle}> <LockOutlinedIcon style={iconStyle}/> </Avatar>
+                    <h1 style={headerStyle}>Sign In</h1>
                 </Grid>
                 
                 
@@ -58,6 +66,7 @@ const Login = () => {
                     <form onSubmit={handleLogin}>
 
                         <TextField
+                            style={textboxStyle}
                             label='username'
                             variant='outlined'
                             type='text'
@@ -82,8 +91,8 @@ const Login = () => {
 
                         <Button color='#626262' variant='contained' style={buttonStyle} fullWidth>Sign In</Button>
 
-                        <Typography> Don't have an account?
-                            <Link fullWidth href='#' >
+                        <Typography style={headerStyle}> Don't have an account?
+                            <Link onClick={handleSignUpClick} style={linkStyle} href='#' >
                                 Sign Up
                             </Link>
                         </Typography>
