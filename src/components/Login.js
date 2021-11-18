@@ -14,8 +14,8 @@ const initialState = {
 };
 
 const Login = (props) => {
-    console.log(props)
-  const [credentials, setCredentials] = useState(initialState);
+    // console.log(props)
+  const [ credentials, setCredentials ] = useState(initialState);
 
   const { push } = useHistory();
 
@@ -26,20 +26,13 @@ const Login = (props) => {
     });
   };
 
-    const handleLogin = (event, user) => {
+    const handleLogin = (event) => {
         event.preventDefault();
-
-        props.userLogin(user)
-
-        // axios.post('https://buildweekpotlucklambda.herokuapp.com/api/users/login', credentials)
-        //     .then(res => {
-        //         console.log(res)
-        //         localStorage.setItem('token', res.data.token);
-                push('/newevent');
-        //     })
-        //     .catch(error => {
-        //         console.log({error})
-        //     })
+        
+        props.userLogin(credentials)
+        console.log(credentials)
+        push('/newevent');
+        //lets push this to the /events page when that is set up
     }
 
     const handleSignUpClick = event => {

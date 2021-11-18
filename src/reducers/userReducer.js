@@ -15,7 +15,6 @@ export const initialState = {
    },
    isFetching: false, // this is for the userPage loading
    error: '',  //this error is if login fails ?
-
 }
 
 export const userReducer = (state = initialState, action) => {
@@ -24,7 +23,7 @@ export const userReducer = (state = initialState, action) => {
          console.log('fetch is happening')
          return {
             ...state,
-            user: [{}],
+            user: {},
             isFetching: true,
             error: ''
          }
@@ -33,6 +32,10 @@ export const userReducer = (state = initialState, action) => {
          return {
             ...state,
             user: action.payload,
+            // user: {
+            //    username: action.payload.username,
+            //    password: action.payload.password
+            // },
             isFetching: false,
             error: ''
          }
@@ -40,7 +43,7 @@ export const userReducer = (state = initialState, action) => {
          console.log('fetch is happening')
          return {
             ...state,
-            user: [{}],
+            user: {},
             isFetching: false,
             error: action.payload
          }
