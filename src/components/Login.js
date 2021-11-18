@@ -1,4 +1,4 @@
-import axios from 'axios';
+// import axios from 'axios';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Grid, Paper, Avatar, TextField, Button, Typography, Link } from '@material-ui/core';
@@ -22,6 +22,7 @@ const Login = (props) => {
     const handleLogin = (event) => {
         event.preventDefault();
         props.userLogin(state)
+        
         push('/newevent');
         //lets push this to the /events page when that is set up
     }
