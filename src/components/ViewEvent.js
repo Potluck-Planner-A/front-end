@@ -1,54 +1,89 @@
 // Import dependencies
-import React, { useState, useEffect } from 'react'
-import axios from 'axios';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
-// Here's where the styling will go
+//----------------  Setting States  ----------------//
+// Main container
+const EventCont = styled.div`
+    background-color: #fbfbfb;
+    border: 1.5px solid black;
+    border-radius: 20px;
 
-// Until proper stuff is set up to pull from I'll be using PokeAPI
+    padding: 1%;
+
+    h3{
+        font-size: 1.6rem;
+    }
+    p {
+        font-size: 1.2rem;
+    }
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+`;
+// Inner divs
+const ButtonDiv = styled.div`
+    border: 2px blue solid
+    margin: 0 2%
+`;
+// Details div
+const DetailsDiv = styled.div`
+    width: 60%;
+    margin: 0 2%
+`;
+// Button
+const StyledButton = styled.button`
+    width: 120px;
+
+    color: black;
+    font-family: 'Antic', sans-serif;
+
+    border: 1px solid #e6db6a
+    border-radius: 10px;
+
+    background-color: #e6db6a;
+`;
+// Location text but again
+const LocationText = styled.span`
+    color: grey;
+    font-style: italic;
+    font-size: 1.2rem;
+`;
 
 // Exported component
-const ViewEvent = () => {
+const ViewEvent = (props) => {
     //----------------  Setting States  ----------------//
-    // Initial event array (starts empty)
-    const initialEvents = [];
-    // Slice of state for events
-    const [events, setEvents] = useState(initialEvents);
+    // ID used to identify the potluck, will probably be name/number
+    const { event } = props;
+    // Details that can be changed based on ID
+    const [details, setDetails] = useState(false);
 
     //----------------  Creating Helpers  ----------------//
-    // Grab events from API (currently grabbing from PokeAPI)
-    const getEvents = () => {
-        axios.get('https://pokeapi.co/api/v2/pokemon/')
-            .then(res => {
-                setEvents(res.data.results);
-            })
-            .catch(err => {
-                console.error(`Ruh roh! ${err}`);
-            })
+    const toggleDetails = () => {
+        setDetails(!details);
     };
-
-    //----------------  Side Effects  ----------------//
-    // Acquire events
-    useEffect(() => {
-        getEvents();
-      }, []);
-
+    
     // Render content
     return (
-        <div className='eventList'>
-            {
-                events.map(event => {
-                    return (
-                        <div className='events'>
-                            <h2>{event.name}</h2>
-                            <p>When the date is available it's go here</p>
-                            <p>When the location is added it'll go here</p>
-                            More Info {/* Will link to the ViewEvent */}
+        <EventCont>
+            <DetailsDiv>
+                {details === true ? 
+                        <div className='details'>
+                            <h3>{event.potluck_name}</h3>
+                            <p>{event.date}</p>
+                            <p>{event.time}</p>
+                            <LocationText>{event.location}</LocationText>
                         </div>
-                    )
-                })
-            }
-        </div>
+                    : ''}
+            </DetailsDiv>
+            <ButtonDiv className='button'>
+                <StyledButton onClick={toggleDetails}>
+                    {details === false ? 'View Details' : 'Close'}
+                </StyledButton>
+            </ButtonDiv>
+        </EventCont>
     )
 };
 
