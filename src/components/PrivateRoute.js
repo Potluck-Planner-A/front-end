@@ -4,12 +4,11 @@ import React from "react";
 // React router v6 is now different https://reactrouter.com/docs/en/v6/upgrading/v5
 import { Route, Redirect } from "react-router-dom";
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
+function PrivateRoute ({ component: Component, ...rest }) {
   return (
-    <Route
-      {...rest}
+    <Route {...rest}
       render={(props) => {
-        if (localStorage.getItem("token")) {
+        if (window.localStorage.getItem("token")) {
           return <Component {...props} />;
         } else {
           return <Redirect to='/login' />;

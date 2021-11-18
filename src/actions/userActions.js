@@ -1,5 +1,6 @@
 //will serve normal, non-token issues
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 //will serve protected routes
 // import axiosWithAuth from './../utils/axiosWithAuth';
 
@@ -12,7 +13,7 @@ export const registerNewUser = (newUser) => {
        axios.post('http://buildweekpotlucklambda.herokuapp.com/api/users/register', newUser)
          .then(res=> {
             console.log(res)
-         //   dispatch(fetchSuccess(res.data.results[0]));
+           dispatch(fetchSuccess(res.data.results[0]));
            //dispatch({type:FETCH_SUCCESS, payload:res.data.results[0]})
        })
        .catch(err => {
@@ -55,11 +56,12 @@ export const userLogin = (credentials) =>{
          .then(res => {
             // console.log(res)
            dispatch(fetchSuccess(localStorage.setItem('token', res.data.token)));
+
          //   dispatch(fetchSuccess('this is my user'));
            //dispatch({type:FETCH_SUCCESS, payload:res.data.results[0]})
        })
        .catch(err => {
-          console.error({ err })
+         //  console.error({ err })
            dispatch(fetchFail(err));
            //dispatch({type:FETCH_ERROR, payload:err})
        });
