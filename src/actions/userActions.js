@@ -46,20 +46,21 @@ export const getUsers = () => {
 
 
 //axios.post  -- login
-export const userLogin = (credentials) =>{
+export const userLogin = (payload) =>{
    return (dispatch) => {
-      console.log('GETTING new users')
+      console.log(payload)
       dispatch(fetchStart());
       //dispatch({type:FETCH_START})
-      axios.post('https://buildweekpotlucklambda.herokuapp.com/api/users/login', credentials)
+      axios.post('https://buildweekpotlucklambda.herokuapp.com/api/users/login', payload)
          .then(res => {
-            // console.log(res)
-           dispatch(fetchSuccess(localStorage.setItem('token', res.data.token)));
-         //   dispatch(fetchSuccess('this is my user'));
+            console.log(res)
+           dispatch(fetchSuccess(window.localStorage.setItem('token', res.data.token)));
+           //   dispatch(fetchSuccess('this is my user'));
            //dispatch({type:FETCH_SUCCESS, payload:res.data.results[0]})
-       })
+           dispatch(setMessage(res.data.message))
+         })
        .catch(err => {
-          console.error({ err })
+          console.log( err.response )
            dispatch(fetchFail(err));
            //dispatch({type:FETCH_ERROR, payload:err})
        });
@@ -80,4 +81,9 @@ export const fetchSuccess = (fetchResp) =>{
 export const FETCH_FAIL = 'FETCH_FAIL';
 export const fetchFail = (errorMessage) =>{
    return ({ type: FETCH_FAIL, payload: errorMessage})
+}
+
+export const SET_MESSAGE = 'SET_MESSAGE';
+export const setMessage = (message) =>{
+   return ({ type: SET_MESSAGE, payload: message})
 }

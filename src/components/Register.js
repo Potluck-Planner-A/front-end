@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 import { Grid, Paper, Avatar, TextField, Button } from '@material-ui/core';
 import PersonIcon from '@material-ui/icons/Person';
 
@@ -11,6 +13,7 @@ const initialState = {
 const Register = () => {
 
     const [state, setState] = useState(initialState)
+    const { push } = useHistory()
 
     const handleChanges = event => {
         setState({
@@ -21,6 +24,18 @@ const Register = () => {
 
     const handleSubmit = event => {
         event.preventDefault();
+        const user = {
+            username: state.username,
+            password: state.password
+        }
+        axios.post('https://buildweekpotlucklambda.herokuapp.com/api/users/register', user)
+            .then(res=>{
+                console.log(res)
+                push('/login')
+            })
+            .catch(err=>{
+                console.log(err.response)
+            })
     }
 
     const paperStyle = {padding: 20, height: '70vh', width: 280, margin: '6rem auto'}
@@ -73,7 +88,7 @@ const Register = () => {
                         fullWidth
                     />
 
-                    <Button style={buttonStyle} variant='contained' fullWidth>Sign Up</Button>
+                    <Button type='submit' style={buttonStyle} variant='contained' fullWidth>Sign Up</Button>
 
                 </form>
             </Paper>
