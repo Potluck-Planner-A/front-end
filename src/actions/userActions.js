@@ -73,8 +73,8 @@ export const fetchStart = () =>{
 }
 
 export const FETCH_SUCCESS = 'FETCH_SUCCESS';
-export const fetchSuccess = (userItems) =>{
-   return ({ type: FETCH_SUCCESS, payload: userItems})
+export const fetchSuccess = (fetchResp) =>{
+   return ({ type: FETCH_SUCCESS, payload: fetchResp})
 }
 
 export const FETCH_FAIL = 'FETCH_FAIL';
