@@ -53,8 +53,8 @@ export const userLogin = (credentials) =>{
       //dispatch({type:FETCH_START})
       axios.post('https://buildweekpotlucklambda.herokuapp.com/api/users/login', credentials)
          .then(res => {
-            console.log(res)
-           dispatch(fetchSuccess(localStorage.setItem('toke ', res.data.token)));
+            // console.log(res)
+           dispatch(fetchSuccess(localStorage.setItem('token', res.data.token)));
          //   dispatch(fetchSuccess('this is my user'));
            //dispatch({type:FETCH_SUCCESS, payload:res.data.results[0]})
        })

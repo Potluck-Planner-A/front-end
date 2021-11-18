@@ -7,27 +7,21 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { connect } from 'react-redux';
 import { userLogin } from './../actions/userActions'
 
-
-const initialState = {
-    username: "",
-    password: "",
-};
-
 const Login = (props) => {
-  const [ credentials, setCredentials ] = useState(initialState);
+  const [ state, setState ] = useState({username: '', password: ''});
 
   const { push } = useHistory();
 
   const handleChange = (event) => {
-    setCredentials({
-        ...credentials,
+    setState({
+        ...state,
         [event.target.name]: event.target.value,
     });
   };
 
     const handleLogin = (event) => {
         event.preventDefault();
-        props.userLogin(credentials)
+        props.userLogin(state)
         push('/newevent');
         //lets push this to the /events page when that is set up
     }
@@ -65,7 +59,7 @@ const Login = (props) => {
                             type='text'
                             placeholder='enter username'
                             name='username'
-                            value={credentials.username}
+                            value={state.username}
                             onChange={handleChange}
                             fullWidth
                         />
@@ -77,7 +71,7 @@ const Login = (props) => {
                             type='password' 
                             placeholder='enter password'
                             name='password'
-                            value={credentials.password}
+                            value={state.password}
                             onChange={handleChange}
                             fullWidth
                         />
@@ -98,10 +92,10 @@ const Login = (props) => {
     );
 }
 
-const mapStateToProps = (state) =>{
-    return {
-        user: state.userReducer.user
-    }
-}
+// const mapStateToProps = (state) =>{
+//     return {
+//         user: state.userReducer.user
+//     }
+// }
 
-export default connect(mapStateToProps, { userLogin })(Login);
+export default connect(null, { userLogin })(Login);
