@@ -38,31 +38,32 @@ const headersData = [
 
 const useStyles = makeStyles(() => ({
   header: {
-    backgroundColor: "#000000",
-    paddingRight: "80px",
-    paddingLeft: "50px",
-    "@media (max-width: 900px)": {
+    backgroundColor: "#fff",
+    paddingRight: "5rem",
+    paddingLeft: "3.125rem",
+    "@media (max-width: 1030px)": {
       paddingLeft: 0,
     },
   },
   logo: {
-    fontFamily: "Droid Sans, sans-serif",
+    fontFamily: "Kaushan Script, cursive",
     fontWeight: 600,
-    color: "#ffffff",
+    color: "#808000",
     textAlign: "left",
   },
   menuButton: {
-    fontFamily: "Fira Sans, sans-serif",
+    fontFamily: "Antic, sans-serif",
     fontWeight: 700,
-    size: "20px",
-    marginLeft: "40px",
+    color: "#808000",
+    size: "1.25rem",
+    marginLeft: "2.5rem",
   },
   toolbar: {
     display: "flex",
     justifyContent: "space-between",
   },
   drawerContainer: {
-    padding: "20px 30px",
+    padding: "1.25rem 1.875rem",
   },
 }));
 
@@ -77,7 +78,7 @@ const Header = () => {
 
   useEffect(() => {
     const setResponsiveness = () => {
-      return window.innerWidth < 900
+      return window.innerWidth < 1030
         ? setState((prevState) => ({ ...prevState, mobileView: true }))
         : setState((prevState) => ({ ...prevState, mobileView: false }));
     };
@@ -110,7 +111,7 @@ const Header = () => {
         <IconButton
           {...{
             edge: "start",
-            color: "inherit",
+            color: "#808000",
             "aria-label": "menu",
             "aria-haspopup": "true",
             onClick: openDrawer,
