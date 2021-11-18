@@ -7,9 +7,9 @@ const Logout = () => {
 
     useEffect(() => {
         axiosWithAuth()
-            .post('http://localhost:5000/api/logout')
+            .post('http://buildweekpotlucklambda.herokuapp.com/api/users//logout')
             .then(response => {
-                localStorage.removeItem('token');
+                window.localStorage.removeItem('token');
                 push('/login');
             })
     }, [])

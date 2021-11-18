@@ -1,6 +1,6 @@
 // import axios from 'axios';
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import { Grid, Paper, Avatar, TextField, Button, Typography, Link } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
@@ -10,7 +10,7 @@ import { userLogin } from './../actions/userActions'
 const Login = (props) => {
   const [ state, setState ] = useState({username: '', password: ''});
 
-  const { push } = useHistory();
+//   const { push } = useHistory();
 
   const handleChange = (event) => {
     setState({
@@ -23,13 +23,13 @@ const Login = (props) => {
         event.preventDefault();
         props.userLogin(state)
         
-        push('/newevent');
+        props.history.push('/newevent');
         //lets push this to the /events page when that is set up
     }
 
     const handleSignUpClick = event => {
         event.preventDefault();
-        push('/register')
+        props.history.push('/register')
     }
 
     const paperStyle = {padding: 20, height: '70vh', width: 280, margin: '6rem auto'}

@@ -8,9 +8,9 @@ export const initialState = {
       //?? this reducer might remain reserved for the users? 
       //todo: honestly i dont see a reason for getUserss
       // name: '',
-      // username: '',
-      // password: '',
-      // email: '',
+      username: '',
+      password: '',
+      email: '',
       // token: ''
    },
    isFetching: false, // this is for the userPage loading

@@ -8,24 +8,26 @@ import { registerNewUser } from './../actions/userActions'
 const initialState = {
     username: '',
     password: '',
-    email:''
+    email: ''
 }
 
 const Register = (props) => {
-    console.log(props)
-
-    const [state, setState] = useState(initialState)
+    
+    const [user, setUser] = useState(initialState)
+    console.log(user)
 
     const handleChanges = event => {
-        setState({
-            ...state, 
+        console.log(user)
+        setUser({
+            ...props.user, 
             [event.target.name]: event.target.value
         });
     }
 
     const handleSubmit = event => {
         event.preventDefault();
-        props.registerNewUser(state)
+        props.registerNewUser(...user)
+        console.log(user)
     }
 
     const paperStyle = {padding: 20, height: '70vh', width: 280, margin: '6rem auto'}
@@ -51,7 +53,7 @@ const Register = (props) => {
                         type='text'
                         placeholder='Enter Username'
                         name='username'
-                        value={state.username}
+                        value={user.username}
                         onChange={handleChanges}
                         fullWidth
                     />
@@ -62,7 +64,7 @@ const Register = (props) => {
                         type='password'
                         placeholder='Enter Password'
                         name='password'
-                        value={state.password}
+                        value={user.password}
                         onChange={handleChanges}
                         fullWidth
                     />
@@ -73,12 +75,12 @@ const Register = (props) => {
                         type='email'
                         placeholder='Enter Email'
                         name='email'
-                        value={state.email}
+                        value={user.email}
                         onChange={handleChanges}
                         fullWidth
                     />
 
-                    <Button style={buttonStyle} variant='contained' fullWidth>Sign Up</Button>
+                    <Button style={buttonStyle} type='submit' variant='contained' fullWidth>Sign Up</Button>
 
                 </form>
             </Paper>

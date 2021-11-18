@@ -11,8 +11,8 @@ export const registerNewUser = (newUser) => {
        //dispatch({type:FETCH_START})
        axios.post('http://buildweekpotlucklambda.herokuapp.com/api/users/register', newUser)
          .then(res=> {
-            console.log(res)
-            console.log(newUser)
+            dispatch(console.log(res))
+            dispatch(console.log(newUser))
            dispatch(fetchSuccess(res.data));
          //   dispatch({type:FETCH_SUCCESS, payload:res.data})
        })
@@ -75,8 +75,8 @@ export const fetchStart = () =>{
 }
 
 export const FETCH_SUCCESS = 'FETCH_SUCCESS';
-export const fetchSuccess = (fetchResp) =>{
-   return ({ type: FETCH_SUCCESS, payload: fetchResp})
+export const fetchSuccess = (user) =>{
+   return ({ type: FETCH_SUCCESS, payload: user})
 }
 
 export const FETCH_FAIL = 'FETCH_FAIL';
