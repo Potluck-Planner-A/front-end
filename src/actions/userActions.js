@@ -46,20 +46,21 @@ export const getUsers = () => {
 
 
 //axios.post  -- login
-export const userLogin = (id) =>{
+export const userLogin = (credentials) =>{
    return (dispatch) => {
       console.log('GETTING new users')
-       dispatch(fetchStart());
-       //dispatch({type:FETCH_START})
-       axios.post(`https://buildweekpotlucklambda.herokuapp.com/api/users/login/${id}`)
-         .then(res=> {
-            console.log(res)
-         //   dispatch(fetchSuccess(res.data.results[0]));
+      dispatch(fetchStart());
+      //dispatch({type:FETCH_START})
+      axios.post('https://buildweekpotlucklambda.herokuapp.com/api/users/login', credentials)
+         .then(res => {
+            // console.log(res)
+           dispatch(fetchSuccess(localStorage.setItem('token', res.data.token)));
+         //   dispatch(fetchSuccess('this is my user'));
            //dispatch({type:FETCH_SUCCESS, payload:res.data.results[0]})
        })
        .catch(err => {
-          console.error(err)
-         //   dispatch(fetchFail(err));
+          console.error({ err })
+           dispatch(fetchFail(err));
            //dispatch({type:FETCH_ERROR, payload:err})
        });
    }
@@ -72,8 +73,8 @@ export const fetchStart = () =>{
 }
 
 export const FETCH_SUCCESS = 'FETCH_SUCCESS';
-export const fetchSuccess = (userItems) =>{
-   return ({ type: FETCH_SUCCESS, payload: userItems})
+export const fetchSuccess = (fetchResp) =>{
+   return ({ type: FETCH_SUCCESS, payload: fetchResp})
 }
 
 export const FETCH_FAIL = 'FETCH_FAIL';

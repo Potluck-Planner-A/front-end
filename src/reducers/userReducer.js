@@ -8,13 +8,13 @@ export const initialState = {
       //?? this reducer might remain reserved for the users? 
       //todo: honestly i dont see a reason for getUserss
       // name: '',
-      username: '',
-      password: '',
-      email: ''
+      // username: '',
+      // password: '',
+      // email: '',
+      // token: ''
    },
    isFetching: false, // this is for the userPage loading
    error: '',  //this error is if login fails ?
-
 }
 
 export const userReducer = (state = initialState, action) => {
@@ -23,15 +23,20 @@ export const userReducer = (state = initialState, action) => {
          console.log('fetch is happening')
          return {
             ...state,
-            user: [],
+            user: {},
             isFetching: true,
             error: ''
          }
       case FETCH_SUCCESS:
+         console.log(action.type)
          console.log('fetch is happening')
          return {
             ...state,
             user: action.payload,
+            // user: {
+            //    username: action.payload.username,
+            //    password: action.payload.password
+            // },
             isFetching: false,
             error: ''
          }
@@ -39,7 +44,7 @@ export const userReducer = (state = initialState, action) => {
          console.log('fetch is happening')
          return {
             ...state,
-            user: [],
+            user: {},
             isFetching: false,
             error: action.payload
          }

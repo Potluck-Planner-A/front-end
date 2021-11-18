@@ -4,35 +4,26 @@ import { useHistory } from 'react-router-dom';
 import { Grid, Paper, Avatar, TextField, Button, Typography, Link } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
+import { connect } from 'react-redux';
+import { userLogin } from './../actions/userActions'
 
-const initialState = {
-    username: "",
-    password: "",
-};
-
-const Login = () => {
-  const [credentials, setCredentials] = useState(initialState);
+const Login = (props) => {
+  const [ state, setState ] = useState({username: '', password: ''});
 
   const { push } = useHistory();
 
   const handleChange = (event) => {
-    setCredentials({
-        ...credentials,
+    setState({
+        ...state,
         [event.target.name]: event.target.value,
     });
   };
 
-    const handleLogin = event => {
+    const handleLogin = (event) => {
         event.preventDefault();
-        axios.post('https://buildweekpotlucklambda.herokuapp.com/api/users/login', credentials)
-            .then(res => {
-                console.log(res)
-                localStorage.setItem('token', res.data.token);
-                push('/newevent');
-            })
-            .catch(error => {
-                console.log({error})
-            })
+        props.userLogin(state)
+        push('/newevent');
+        //lets push this to the /events page when that is set up
     }
 
     const handleSignUpClick = event => {
@@ -68,7 +59,7 @@ const Login = () => {
                             type='text'
                             placeholder='enter username'
                             name='username'
-                            value={credentials.username}
+                            value={state.username}
                             onChange={handleChange}
                             fullWidth
                         />
@@ -80,7 +71,7 @@ const Login = () => {
                             type='password' 
                             placeholder='enter password'
                             name='password'
-                            value={credentials.password}
+                            value={state.password}
                             onChange={handleChange}
                             fullWidth
                         />
@@ -101,4 +92,10 @@ const Login = () => {
     );
 }
 
-export default Login;
+// const mapStateToProps = (state) =>{
+//     return {
+//         user: state.userReducer.user
+//     }
+// }
+
+export default connect(null, { userLogin })(Login);
