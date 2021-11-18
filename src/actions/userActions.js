@@ -1,7 +1,7 @@
 //will serve normal, non-token issues
 import axios from 'axios';
 //will serve protected routes
-// import axiosWithAuth from './../utils/axiosWithAuth';
+import axiosWithAuth from './../utils/axiosWithAuth';
 
 //axios.post -- register new user
 export const registerNewUser = (newUser) => {
@@ -28,10 +28,10 @@ export const getUsers = () => {
       console.log('GETTING new users')
        dispatch(fetchStart());
        //dispatch({type:FETCH_START})
-       axios.get('http://buildweekpotlucklambda.herokuapp.com/api/users')
+       axiosWithAuth().get('/users')
          .then(res=> {
             console.log(res)
-         //   dispatch(fetchSuccess(res.data.results[0]));
+           dispatch(fetchSuccess({res}));
            //dispatch({type:FETCH_SUCCESS, payload:res.data.results[0]})
        })
        .catch(err => {
@@ -69,7 +69,7 @@ export const userLogin = (credentials) =>{
 
 export const FETCH_START = 'FETCH_START';
 export const fetchStart = () =>{
-   return ({ type: FETCH_START})
+   return ({ type: FETCH_START })
 }
 
 export const FETCH_SUCCESS = 'FETCH_SUCCESS';
