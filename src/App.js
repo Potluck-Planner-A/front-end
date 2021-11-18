@@ -8,6 +8,7 @@ import Logout from "./components/Logout";
 import NewEvent from "./components/NewEvent";
 import Register from "./components/Register";
 import PrivateRoute from "./components/PrivateRoute";
+import UserHome from "./components/UserHome";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <div className='App'>
         <Header className='header' />
         <Switch>
+          <Route path='/userhome' component={UserHome}/>
           <Route path='/newevent' component={NewEvent} />
           <Route path='/register' component={Register} />
           <Route path='/login' component={Login} />
