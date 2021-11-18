@@ -14,7 +14,6 @@ const initialState = {
 };
 
 const Login = (props) => {
-    // console.log(props)
   const [ credentials, setCredentials ] = useState(initialState);
 
   const { push } = useHistory();
@@ -28,9 +27,7 @@ const Login = (props) => {
 
     const handleLogin = (event) => {
         event.preventDefault();
-        
         props.userLogin(credentials)
-        console.log(credentials)
         push('/newevent');
         //lets push this to the /events page when that is set up
     }
