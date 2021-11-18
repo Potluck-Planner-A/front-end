@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 import { connect } from 'react-redux';
 import { getUsers } from '../actions/userActions';
@@ -11,7 +12,10 @@ const UserHome = (props) => {
 
    
    useEffect(() => {
-      getUsers()
+
+      axiosWithAuth().get('/user')
+
+      // getUsers()
       // setState({username: state.user})
    }, [])
 
