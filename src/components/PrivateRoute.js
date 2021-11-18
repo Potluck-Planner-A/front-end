@@ -4,7 +4,7 @@ import React from "react";
 // React router v6 is now different https://reactrouter.com/docs/en/v6/upgrading/v5
 import { Route, Redirect } from "react-router-dom";
 
-function PrivateRoute ({ component: Component, ...rest }) {
+const PrivateRoute = ({ component: Component, ...rest })=> {
   return (
     <Route {...rest}
       render={(props) => {

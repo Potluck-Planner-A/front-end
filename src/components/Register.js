@@ -2,13 +2,17 @@ import React, { useState } from 'react';
 import { Grid, Paper, Avatar, TextField, Button } from '@material-ui/core';
 import PersonIcon from '@material-ui/icons/Person';
 
+import { connect } from 'react-redux';
+import { registerNewUser } from './../actions/userActions'
+
 const initialState = {
     username: '',
     password: '',
     email:''
 }
 
-const Register = () => {
+const Register = (props) => {
+    console.log(props)
 
     const [state, setState] = useState(initialState)
 
@@ -21,6 +25,7 @@ const Register = () => {
 
     const handleSubmit = event => {
         event.preventDefault();
+        props.registerNewUser(state)
     }
 
     const paperStyle = {padding: 20, height: '70vh', width: 280, margin: '6rem auto'}
@@ -81,4 +86,10 @@ const Register = () => {
     )
 }
 
-export default Register
+const mapStateToProps = (state)=> {
+    return{
+        user: state.userReducer.user
+    }
+}
+
+export default connect(mapStateToProps, {registerNewUser})(Register)

@@ -1,6 +1,8 @@
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
 
+//helper function from utils
+
 import Header from "./components/Header";
 import Home from "./components/Home";
 import Login from "./components/Login";
@@ -15,9 +17,11 @@ function App() {
       <div className='App'>
         <Header className='header' />
         <Switch>
+          <Route path='/login'>
+            <Login />
+          </Route>
           <PrivateRoute path='/newevent' component={NewEvent} />
           <Route path='/register' component={Register} />
-          <Route path='/login' component={Login} />
           <Route exact path='/logout' component={Logout} />
           <Route path='/' component={Home} />
         </Switch>

@@ -1,20 +1,20 @@
 //will serve normal, non-token issues
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
 //will serve protected routes
-// import axiosWithAuth from './../utils/axiosWithAuth';
+import axiosWithAuth from './../utils/axiosWithAuth';
 
 //axios.post -- register new user
 export const registerNewUser = (newUser) => {
    return (dispatch) => {
-      //  dispatch(fetchStart());
-       console.log('FETCHING new user')
+       dispatch(fetchStart('CREATING new user'));
+      //  console.log('FETCHING new user')
        //dispatch({type:FETCH_START})
        axios.post('http://buildweekpotlucklambda.herokuapp.com/api/users/register', newUser)
          .then(res=> {
             console.log(res)
-           dispatch(fetchSuccess(res.data.results[0]));
-           //dispatch({type:FETCH_SUCCESS, payload:res.data.results[0]})
+            console.log(newUser)
+           dispatch(fetchSuccess(res.data));
+         //   dispatch({type:FETCH_SUCCESS, payload:res.data})
        })
        .catch(err => {
            dispatch(fetchFail(err));
@@ -29,7 +29,7 @@ export const getUsers = () => {
       console.log('GETTING new users')
        dispatch(fetchStart());
        //dispatch({type:FETCH_START})
-       axios.get('http://buildweekpotlucklambda.herokuapp.com/api/users')
+       axiosWithAuth().get('http://buildweekpotlucklambda.herokuapp.com/api/users')
          .then(res=> {
             console.log(res)
          //   dispatch(fetchSuccess(res.data.results[0]));
