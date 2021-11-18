@@ -44,7 +44,7 @@ export const userReducer = (state = initialState, action) => {
          console.log('fetch is happening')
          return {
             ...state,
-            user: {},
+            user: '',
             isFetching: false,
             error: action.payload
          }
