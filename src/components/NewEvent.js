@@ -1,25 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-
-const fakeData = [
-  {name: 'Brekky with Friends',
-  organizer: 'Todd Howard',
-  date: '11/28/2021',
-  location: '4231 Westover St Georgetown, SD, 54063',
-  guests: ['Millie', 'Maggie', 'Melvin', 'Murry', 'Murphy'],
-  food: ['Potatoes & Gravy', 'Roles', 'Ham', 'Drinks', 'stuffing']},
-  {name: 'Brekky with Friends',
-  organizer: 'Todd Howard',
-  date: '11/27/2021',
-  location: '4231 Westover St Georgetown, SD, 54063',
-  guests: ['Millie', 'Maggie', 'Melvin', 'Murry', 'Murphy'],
-  food: ['Potatoes & Gravy', 'Roles', 'Ham', 'Drinks', 'stuffing']}, 
-  {name: 'Brekky with Friends',
-  organizer: 'Todd Howard',
-  date: '11/24/2021',
-  location: '4231 Westover St Georgetown, SD, 54063',
-  guests: ['Millie', 'Maggie', 'Melvin', 'Murry', 'Murphy'],
-  food: ['Potatoes & Gravy', 'Roles', 'Ham', 'Drinks', 'stuffing']},]
+import { connect } from 'react-redux';
+import { addEvent } from './../actions/eventActions'
 
   const StyledBackground = styled.div`
   background-image: url("https://253qv1sx4ey389p9wtpp9sj0-wpengine.netdna-ssl.com/wp-content/uploads/2018/11/Dishes_at_Potluck.jpg");
@@ -70,10 +52,14 @@ justify-content: center;
 height: 20px;
 `
 
-const NewEvent = () => {
+const NewEvent = (props) => {
+
+    useEffect(() => {
+        props.addEvent(potluck)
+    }, [])
 
     const [ formValues, setFromValues ] = useState({name: '', organizer: '', date: '', location: '', guests: '', food: ''});
-    const [ potluck, setPotluck ] = useState(fakeData);
+    const [ potluck, setPotluck ] = useState([]);
 
     const submit = (evt) => {
         evt.preventDefault();
@@ -85,13 +71,15 @@ const NewEvent = () => {
             guests: formValues.guests,
             food: formValues.food,
         }
-        setPotluck(potluck.concat(newPotluck))
+        setPotluck([...newPotluck, newPotluck])
         setFromValues({name: '', organizer: '', date: '', location: '', guests: '', food: ''})
+        
     }
 
     const change = (evt) => {
         const {name, value} = evt.target;
         setFromValues({...formValues, [name]: value})
+        console.log(potluck)
     }
 
     return (
@@ -100,7 +88,7 @@ const NewEvent = () => {
             <StyledForm onSubmit={submit}>
             <h2>Start Planning!</h2>
             <StyledLabel>
-                <p>Name:</p>
+                <p>Title:</p>
                     <input
                         value={formValues.name}
                         name="name"
@@ -163,9 +151,18 @@ const NewEvent = () => {
                     <input type="submit" value="Add a Potluck" />
                 </StyledButton>
             </StyledForm>
+            <div>
+                {/* {potluck.map(item => {
+                    return <div>{item}</div>
+                })} */}
+            </div>
         </StyledDiv>
         </StyledBackground>
     )
 }
 
-export default NewEvent
+// const mapStateToProps = state => {
+
+// }
+
+export default connect(null, { addEvent })(NewEvent)
