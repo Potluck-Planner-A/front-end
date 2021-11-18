@@ -78,7 +78,7 @@ const Header = () => {
 
   useEffect(() => {
     const setResponsiveness = () => {
-      return window.innerWidth < 1030
+      return window.innerWidth < 1000
         ? setState((prevState) => ({ ...prevState, mobileView: true }))
         : setState((prevState) => ({ ...prevState, mobileView: false }));
     };
@@ -111,7 +111,6 @@ const Header = () => {
         <IconButton
           {...{
             edge: "start",
-            color: "#808000",
             "aria-label": "menu",
             "aria-haspopup": "true",
             onClick: openDrawer,
