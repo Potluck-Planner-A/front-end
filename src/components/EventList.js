@@ -1,6 +1,6 @@
 // Import dependencies
 import React, { useState, useEffect } from 'react'
-import axios from 'axios';
+import axiosWithAuth from './../utils/axiosWithAuth';
 import styled from 'styled-components';
 
 // Import component
@@ -115,20 +115,22 @@ const EventList = () => {
 
     //----------------  Creating Helpers  ----------------//
     // Commented out until API has data to pull from
-    // const getEvents = () => {
-    //     axios.get('https://buildweekpotlucklambda.herokuapp.com/api/potlucks')
-    //         .then(res => {
-    //             console.log(res);
-    //         })
-    //         .catch(err => {
-    //             console.error(`Ruh roh! ${err}`);
-    //         })
-    // };
+    const getEvents = () => {
+        axiosWithAuth().get('https://buildweekpotlucklambda.herokuapp.com/api/potlucks')
+            .then(res => {
+                console.log(res);
+                setEvents(res.data)
+            })
+            .catch(err => {
+                console.log(err.response)
+                // console.log(`Ruh roh! ${err.response.data}`);
+            })
+    };
 
     //----------------  Side Effects  ----------------//
     // Acquire events
     useEffect(() => {
-        setEvents(dummyEvents);
+        getEvents();
       }, []);
 
     // Render content

@@ -7,6 +7,7 @@ import Login from "./components/Login";
 import Logout from "./components/Logout";
 import NewEvent from "./components/NewEvent";
 import Register from "./components/Register";
+import EventList from './components/EventList';
 import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
@@ -15,7 +16,8 @@ function App() {
       <div className='App'>
         <Header className='header' />
         <Switch>
-          <Route path='/newevent' component={NewEvent} />
+          <PrivateRoute path='/events' component={EventList} />
+          <PrivateRoute path='/newevent' component={NewEvent} />
           <Route path='/register' component={Register} />
           <Route path='/login' component={Login} />
           <Route exact path='/logout' component={Logout} />
