@@ -16,8 +16,8 @@ function App() {
       <div className='App'>
         <Header className='header' />
         <Switch>
-          <Route path='/events' component={EventList} />
-          <Route path='/newevent' component={NewEvent} />
+          <PrivateRoute path='/events' component={EventList} />
+          <PrivateRoute path='/newevent' component={NewEvent} />
           <Route path='/register' component={Register} />
           <Route path='/login' component={Login} />
           <Route exact path='/logout' component={Logout} />
