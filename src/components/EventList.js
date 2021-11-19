@@ -6,7 +6,7 @@ import styled from 'styled-components';
 // Import component
 import ViewEvent from './ViewEvent';
 
-//----------------  Setting States  ----------------//
+//----------------  Atyling Components  ----------------//
 // Main container
 const StyledContainer = styled.div`
     font-size: 62.5%;
@@ -33,11 +33,11 @@ const StyledContainer = styled.div`
 // Container for individual events
 const EventsContainer = styled.div`
     width: 80%;
-    height: 200px;
+    padding: 3% 0;
     background: rgba(255, 255, 255, 0.85);
-    border-radius: 5rem;
+    border-radius: 4rem;
     box-shadow: 1px 1px 2px black, 0 0 25px black, 0 0 5px black;
-    margin: 1% 0;
+    margin: 1.5% 0;
     
     display: flex;
     flex-flow: row wrap;
@@ -46,7 +46,7 @@ const EventsContainer = styled.div`
 `;
 // Primary heading
 const UpcomingEvents = styled.h2`
-    font-size: 2.4rem;
+    font-size: 2.8rem;
     font-weight: bold;
     text-shadow: 0px 0px 40px #ffffff;
     margin-bottom: 25px;
@@ -54,13 +54,13 @@ const UpcomingEvents = styled.h2`
 // Container for the two inner divs in event containers
 const BasicInfo = styled.div`
     width: 30%;
-    margin-left: 5%;
+    margin-left: 3%;
 
     text-align: left;
 `;
 const MoreInfo = styled.div`
-    width: 50%;
-    margin-right: 5%;
+    width: 60%;
+    margin-right: 3%;
 `;
 // Clumping together the text sizes inside the InnerConts
 const EventTitle = styled.h3`
@@ -74,34 +74,6 @@ const LocationText = styled.span`
     color: grey;
     font-style: italic;
 `;
-
-//----------------  Dummy Data  ----------------//
-const dummyEvents = [
-    {
-        "potluck_id": 1,
-        "potluck_name": "Thanksgiving",
-        "date": "2021-11-20",
-        "time": "13:00:00",
-        "location": "U.S.A",
-        "user_id": 1
-    },
-    {
-        "potluck_id": 2,
-        "potluck_name": "Brekky",
-        "date": "2021-11-17",
-        "time": "14:30:00",
-        "location": "Pentagon",
-        "user_id": 1
-    },
-    {
-        "potluck_id": 3,
-        "potluck_name": "Dummy",
-        "date": "2021-11-17",
-        "time": "14:30:00",
-        "location": "Dummy",
-        "user_id": 1
-    },
-];
 
 //----------------  There be functions here  ----------------//
 
@@ -123,7 +95,6 @@ const EventList = () => {
             })
             .catch(err => {
                 console.log(err.response)
-                // console.log(`Ruh roh! ${err.response.data}`);
             })
     };
 

@@ -1,18 +1,20 @@
 // Import dependencies
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import axiosWithAuth from './../utils/axiosWithAuth';
 
-//----------------  Setting States  ----------------//
+//----------------  Styling Components  ----------------//
 // Main container
 const EventCont = styled.div`
     background-color: #fbfbfb;
-    border: 1.5px solid black;
-    border-radius: 20px;
+    border-left: 2px dashed lightgrey;
 
     padding: 1%;
 
     h3{
         font-size: 1.6rem;
+        padding: 0;
+        margin: 0;
     }
     p {
         font-size: 1.2rem;
@@ -30,18 +32,49 @@ const ButtonDiv = styled.div`
 `;
 // Details div
 const DetailsDiv = styled.div`
-    width: 60%;
+    width: 75%;
     margin: 0 2%
+`;
+// Divs container
+const DivsContainer = styled.div`
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+`;
+// PotluckInfo
+const PotluckInfo = styled.div`
+    width: 45%;
+    
+    h3 {
+        padding-bottom: 20%;
+    }
+`;
+// Food div
+const FoodDiv = styled.div`
+    border-left: 2px dashed lightgrey;
+    border-right: 2px dashed lightgrey;
+    padding-left: 10px;
+
+    width: 45%;
+
+    font-family: 'Antic', sans-serif;
+    font-size: 1rem;
+
+    ul {
+    text-align: left;
+    }
 `;
 // Button
 const StyledButton = styled.button`
-    width: 120px;
+    border: 2px solid #e6db6a;
+    border-radius: 10px;
+    padding: 5px 0;
 
+    width: 130px;
+    
     color: black;
     font-family: 'Antic', sans-serif;
-
-    border: 1px solid #e6db6a
-    border-radius: 10px;
+    font-size: 1.2rem;
 
     background-color: #e6db6a;
 `;
@@ -59,23 +92,55 @@ const ViewEvent = (props) => {
     const { event } = props;
     // Details that can be changed based on ID
     const [details, setDetails] = useState(false);
+    // State for foods
+    const [foods, setFoods] = useState([]);
 
     //----------------  Creating Helpers  ----------------//
+    // Toggle button on and off
     const toggleDetails = () => {
         setDetails(!details);
     };
+    // Get foods from API
+    const getFoods = () => {
+        axiosWithAuth().get('https://buildweekpotlucklambda.herokuapp.com/api/foods')
+            .then(res => {
+                setFoods(res.data);
+            })
+            .catch(err => {
+                console.log(err.response)
+            })
+    };
+
+    //----------------  Side Effects  ----------------//
+    useEffect(() => {
+        getFoods();
+      }, []);
     
     // Render content
     return (
         <EventCont>
             <DetailsDiv>
                 {details === true ? 
-                        <div className='details'>
-                            <h3>{event.potluck_name}</h3>
-                            <p>{event.date}</p>
-                            <p>{event.time}</p>
-                            <LocationText>{event.location}</LocationText>
-                        </div>
+                        <DivsContainer className='details'>
+                            <PotluckInfo>
+                                <h3>{event.potluck_name}</h3>
+                                <div>
+                                    <p>{event.date}</p>
+                                    <p>{event.time}</p>
+                                    <LocationText>{event.location}</LocationText>
+                                </div>
+                            </PotluckInfo>
+                            <FoodDiv>
+                                <h3>Foods</h3>
+                                {foods.map(food => {
+                                    return (
+                                        <ul>
+                                            <li>{food.food_name}</li>
+                                        </ul>
+                                    )
+                                })}
+                            </FoodDiv>
+                        </DivsContainer>
                     : ''}
             </DetailsDiv>
             <ButtonDiv className='button'>
