@@ -6,12 +6,15 @@ const Logout = () => {
     const { push } = useHistory();
 
     useEffect(() => {
-        axiosWithAuth()
-            .post('http://localhost:5000/api/logout')
-            .then(response => {
-                localStorage.removeItem('token');
-                push('/login');
-            })
+
+        localStorage.removeItem("token")
+        push('/login')
+        // axiosWithAuth()
+        //     .post('http://localhost:5000/api/logout')
+        //     .then(response => {
+        //         localStorage.removeItem('token');
+        //         push('/login');
+        //     })
     }, [])
 
     return(<div></div>);
