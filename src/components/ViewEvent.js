@@ -1,8 +1,9 @@
 // Import dependencies
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import axiosWithAuth from './../utils/axiosWithAuth';
 
-//----------------  Setting States  ----------------//
+//----------------  Styling Components  ----------------//
 // Main container
 const EventCont = styled.div`
     background-color: #fbfbfb;
@@ -30,18 +31,20 @@ const ButtonDiv = styled.div`
 `;
 // Details div
 const DetailsDiv = styled.div`
+    border: 1px solid red;
     width: 60%;
     margin: 0 2%
 `;
 // Button
 const StyledButton = styled.button`
-    width: 120px;
+    border: 2px dashed magenta;
+    border-radius: 10px;
 
+    width: 130px;
+    
     color: black;
     font-family: 'Antic', sans-serif;
-
-    border: 1px solid #e6db6a
-    border-radius: 10px;
+    font-size: 1.2rem;
 
     background-color: #e6db6a;
 `;
@@ -59,11 +62,29 @@ const ViewEvent = (props) => {
     const { event } = props;
     // Details that can be changed based on ID
     const [details, setDetails] = useState(false);
+    // State for foods
+    const [foods, setFoods] = useState([]);
 
     //----------------  Creating Helpers  ----------------//
+    // Toggle button on and off
     const toggleDetails = () => {
         setDetails(!details);
     };
+    // Get foods from API
+    const getFoods = () => {
+        axiosWithAuth().get('https://buildweekpotlucklambda.herokuapp.com/api/foods')
+            .then(res => {
+                setFoods(res.data);
+            })
+            .catch(err => {
+                console.log(err.response)
+            })
+    };
+
+    //----------------  Side Effects  ----------------//
+    useEffect(() => {
+        getFoods();
+      }, []);
     
     // Render content
     return (
@@ -71,10 +92,19 @@ const ViewEvent = (props) => {
             <DetailsDiv>
                 {details === true ? 
                         <div className='details'>
-                            <h3>{event.potluck_name}</h3>
-                            <p>{event.date}</p>
-                            <p>{event.time}</p>
-                            <LocationText>{event.location}</LocationText>
+                            <div>
+                                <h3>{event.potluck_name}</h3>
+                                <p>{event.date}</p>
+                                <p>{event.time}</p>
+                                <LocationText>{event.location}</LocationText>
+                            </div>
+                            <div>
+                                {foods.map(food => {
+                                    return (
+                                        <p>{food.food_name}</p>
+                                    )
+                                })}
+                            </div>
                         </div>
                     : ''}
             </DetailsDiv>
