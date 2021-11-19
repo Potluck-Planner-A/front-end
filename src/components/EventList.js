@@ -33,11 +33,11 @@ const StyledContainer = styled.div`
 // Container for individual events
 const EventsContainer = styled.div`
     width: 80%;
-    height: 250px;
+    padding: 3% 0;
     background: rgba(255, 255, 255, 0.85);
-    border-radius: 5rem;
+    border-radius: 4rem;
     box-shadow: 1px 1px 2px black, 0 0 25px black, 0 0 5px black;
-    margin: 1% 0;
+    margin: 1.5% 0;
     
     display: flex;
     flex-flow: row wrap;
@@ -46,7 +46,7 @@ const EventsContainer = styled.div`
 `;
 // Primary heading
 const UpcomingEvents = styled.h2`
-    font-size: 2.4rem;
+    font-size: 2.8rem;
     font-weight: bold;
     text-shadow: 0px 0px 40px #ffffff;
     margin-bottom: 25px;

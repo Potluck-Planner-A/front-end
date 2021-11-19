@@ -7,13 +7,14 @@ import axiosWithAuth from './../utils/axiosWithAuth';
 // Main container
 const EventCont = styled.div`
     background-color: #fbfbfb;
-    border: 1.5px solid black;
-    border-radius: 20px;
+    border-left: 2px dashed lightgrey;
 
     padding: 1%;
 
     h3{
         font-size: 1.6rem;
+        padding: 0;
+        margin: 0;
     }
     p {
         font-size: 1.2rem;
@@ -31,14 +32,43 @@ const ButtonDiv = styled.div`
 `;
 // Details div
 const DetailsDiv = styled.div`
-    border: 1px solid red;
-    width: 60%;
+    width: 75%;
     margin: 0 2%
+`;
+// Divs container
+const DivsContainer = styled.div`
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+`;
+// PotluckInfo
+const PotluckInfo = styled.div`
+    width: 45%;
+    
+    h3 {
+        padding-bottom: 20%;
+    }
+`;
+// Food div
+const FoodDiv = styled.div`
+    border-left: 2px dashed lightgrey;
+    border-right: 2px dashed lightgrey;
+    padding-left: 10px;
+
+    width: 45%;
+
+    font-family: 'Antic', sans-serif;
+    font-size: 1rem;
+
+    ul {
+    text-align: left;
+    }
 `;
 // Button
 const StyledButton = styled.button`
-    border: 2px dashed magenta;
+    border: 2px solid #e6db6a;
     border-radius: 10px;
+    padding: 5px 0;
 
     width: 130px;
     
@@ -91,21 +121,26 @@ const ViewEvent = (props) => {
         <EventCont>
             <DetailsDiv>
                 {details === true ? 
-                        <div className='details'>
-                            <div>
+                        <DivsContainer className='details'>
+                            <PotluckInfo>
                                 <h3>{event.potluck_name}</h3>
-                                <p>{event.date}</p>
-                                <p>{event.time}</p>
-                                <LocationText>{event.location}</LocationText>
-                            </div>
-                            <div>
+                                <div>
+                                    <p>{event.date}</p>
+                                    <p>{event.time}</p>
+                                    <LocationText>{event.location}</LocationText>
+                                </div>
+                            </PotluckInfo>
+                            <FoodDiv>
+                                <h3>Foods</h3>
                                 {foods.map(food => {
                                     return (
-                                        <p>{food.food_name}</p>
+                                        <ul>
+                                            <li>{food.food_name}</li>
+                                        </ul>
                                     )
                                 })}
-                            </div>
-                        </div>
+                            </FoodDiv>
+                        </DivsContainer>
                     : ''}
             </DetailsDiv>
             <ButtonDiv className='button'>
