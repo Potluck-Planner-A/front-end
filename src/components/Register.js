@@ -11,9 +11,10 @@ const initialState = {
 }
 
 const Register = () => {
-
-    const [state, setState] = useState(initialState)
+    
     const { push } = useHistory()
+    const [state, setState] = useState(initialState)
+    const [error, setError] = useState('')
 
     const handleChanges = event => {
         setState({
@@ -30,11 +31,12 @@ const Register = () => {
         }
         axios.post('https://buildweekpotlucklambda.herokuapp.com/api/users/register', user)
             .then(res=>{
-                console.log(res)
+                // console.log(res)
                 push('/login')
             })
             .catch(err=>{
-                console.log(err.response)
+                // console.log(err.response.data.message)
+                setError(err.response.data.message)
             })
     }
 
@@ -87,6 +89,9 @@ const Register = () => {
                         onChange={handleChanges}
                         fullWidth
                     />
+
+                    {error ? <p style={{color: 'red'}} >{error}</p> : null}
+
 
                     <Button type='submit' style={buttonStyle} variant='contained' fullWidth>Sign Up</Button>
 
