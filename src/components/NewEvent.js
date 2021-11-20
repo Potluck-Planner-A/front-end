@@ -67,7 +67,7 @@ import styled from 'styled-components';
   }
   `
 
-const StyledButton = styled.label`
+const StyledButton = styled.div`
 display: flex;
 flex-direction: row;
 margin: 12px;
@@ -81,7 +81,7 @@ const NewEvent = () => {
     const { push } = useHistory()
     
     const [ formValues, setFromValues ] = useState({name: '', organizer: '', date: '', location: '', guests: '', food: ''});
-    const [ potluck, setPotluck ] = useState([]);
+    const [ error, setError ] = useState('');
 
     const sendItems =(newPotluck)=>{
         axiosWithAuth().post('https://buildweekpotlucklambda.herokuapp.com/api/potlucks', newPotluck)
@@ -95,6 +95,10 @@ const NewEvent = () => {
                 //     guests: formValues.guests,
                 //     food: formValues.food,
                 // })
+            })
+            .catch(err=>{
+                setError('sorry something went wrong')
+                // console.log(err)
             })
     }
     
@@ -114,6 +118,10 @@ const NewEvent = () => {
         // setPotluck(...potluck, newPotluck)
 
         // setFromValues({name: '', organizer: '', date: '', location: '', guests: '', food: ''})
+    }
+
+    const handleClick =()=>{
+        push('/events')
     }
 
     const change = (evt) => {
@@ -189,6 +197,15 @@ const NewEvent = () => {
                 <StyledButton>
                     <input type="submit" value="Add a Potluck" />
                 </StyledButton>
+                {
+                    error ? 
+                        <>
+                        <p style={{color: 'red'}} >{error}</p>
+                        <button onClick={handleClick}>View Events anyway</button>
+                        </>
+                    : null
+                 }
+
             </StyledForm>
         </StyledDiv>
         </StyledBackground>
