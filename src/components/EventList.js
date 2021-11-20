@@ -90,11 +90,11 @@ const EventList = () => {
     const getEvents = () => {
         axiosWithAuth().get('https://buildweekpotlucklambda.herokuapp.com/api/potlucks')
             .then(res => {
-                console.log(res);
+                // console.log(res);
                 setEvents(res.data)
             })
             .catch(err => {
-                console.log(err.response)
+                // console.log(err.response)
             })
     };
 

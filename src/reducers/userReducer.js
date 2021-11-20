@@ -20,7 +20,7 @@ export const initialState = {
 export const userReducer = (state = initialState, action) => {
    switch(action.type) {
       case FETCH_START:
-         console.log('fetch is happening')
+         // console.log('fetch is happening')
          return {
             ...state,
             user: {},
@@ -28,8 +28,8 @@ export const userReducer = (state = initialState, action) => {
             error: ''
          }
       case FETCH_SUCCESS:
-         console.log(action.type)
-         console.log('fetch is happening')
+         // console.log(action.type)
+         // console.log('fetch is happening')
          return {
             ...state,
             // user: action.payload,
@@ -41,7 +41,7 @@ export const userReducer = (state = initialState, action) => {
             error: ''
          }
       case FETCH_FAIL:
-         console.log('fetch is happening')
+         // console.log('fetch is happening')
          return {
             ...state,
             user: {},
