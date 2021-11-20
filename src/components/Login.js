@@ -4,23 +4,32 @@ import { useHistory } from 'react-router-dom';
 import { Grid, Paper, Avatar, TextField, Button, Typography, Link } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
-import { connect } from 'react-redux';
-import { userLogin } from './../actions/userActions'
+// import { connect } from 'react-redux';
+// import { userLogin } from './../actions/userActions'
+
+const initialState ={
+    username: '',
+    password: ''
+}
 
 const Login = (props) => {
-  const [ state, setState ] = useState({username: '', password: ''});
+  const [ state, setState ] = useState(initialState);
+  const [ error, setError ] = useState('')
 
   const { push } = useHistory();
 
   const logMeIn = (credentials) =>{
       axios.post('https://buildweekpotlucklambda.herokuapp.com/api/users/login', credentials)
         .then(res=>{
-            console.log(credentials)
+            // console.log(credentials)
             window.localStorage.setItem('token', res.data.token)
             push('/events')
         })
         .catch(err=>{
-            console.log(err)
+            setError('Username/Password Invalid')
+            // console.log(err.message)
+            // console.log(message)
+            setState(initialState)
         })
   }
 
@@ -89,6 +98,8 @@ const Login = (props) => {
                             onChange={handleChange}
                             fullWidth
                         />
+
+                        {error ? <p style={{color: 'red'}} >{error}</p> : null}
 
                         <Button variant='contained' type='submit' style={buttonStyle} fullWidth>Sign In</Button>
 
